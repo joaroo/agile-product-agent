@@ -1,0 +1,11 @@
+{
+  "name": "joaroo",
+  "plugins": [
+    {
+      "name": "agile-product-agent",
+      "source": "./",
+      "description": "Agile product workflows via Atlassian MCP — Jira + Confluence discovery, planning, docs, grooming, kanban, reports, and input ingestion",
+      "repository": "https://github.com/joaroo/agile-product-agent"
+    }
+  ]
+}

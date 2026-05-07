@@ -1,0 +1,27 @@
+{
+  "name": "agile-product-agent",
+  "version": "1.0.0",
+  "author": "joaroo",
+  "license": "MIT",
+  "description": "Agile product workflows via Atlassian MCP — discovery, planning, docs, grooming, kanban, reports, and input ingestion",
+  "commands": [
+    "discover",
+    "update-docs",
+    "sprint-plan",
+    "groom",
+    "status",
+    "kanban",
+    "ingest"
+  ],
+  "skills": [
+    "product-discovery",
+    "document-update",
+    "sprint-planning",
+    "backlog-grooming",
+    "status-report",
+    "kanban-workflow",
+    "input-ingestion"
+  ],
+  "mcp_config": ".mcp.json"
+}
+
