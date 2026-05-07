@@ -19,6 +19,8 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
 
 ## Workflow
 
+0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. BA persona: flag ambiguity before creating tickets. UX persona: route to UX/design templates automatically.
+
 1. **Ingest source**
    - `file`: Read the file from local filesystem (markdown, txt, pdf summary)
    - `paste`: Use content provided directly in the conversation

@@ -18,6 +18,8 @@ Invoked by `/update-docs`. Also triggered when user asks to write, update, or cr
 
 ## Workflow
 
+0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md` to template selection and output framing. If unclear who the page is for and no persona is set, ask before drafting.
+
 1. **Resolve target** — If updating: use `atlassian-search-confluence` to find the page by title. If creating: confirm parent page exists via `atlassian-read-confluence`
 2. **Read current state** (updates only) — Use `atlassian-read-confluence` to fetch existing content before any modification
 3. **Draft content** — Apply `standards/confluence.md`:

@@ -16,6 +16,8 @@ Invoked by `/status`. Also triggered when user asks for project health, sprint p
 
 ## Workflow
 
+0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default: metrics table first, then narrative.
+
 1. **Active sprint** — Use `atlassian-search-jira`:
    `project = {KEY} AND sprint in openSprints()`
    Fetch all items. Group by status: To Do / In Progress / Done.

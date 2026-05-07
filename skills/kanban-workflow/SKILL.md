@@ -16,6 +16,8 @@ Invoked by `/kanban`. Also triggered when user asks to triage new issues, move c
 
 ## Workflow
 
+0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default: WIP violations and blockers flagged at top.
+
 ### triage
 1. Fetch new/unprocessed issues: `project = {KEY} AND status = "To Do" AND created >= -7d ORDER BY created DESC`
 2. For each: assess priority, suggest assignee (based on component ownership if available), flag if missing description

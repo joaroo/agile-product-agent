@@ -5,6 +5,7 @@
   "license": "MIT",
   "description": "Agile product workflows via Atlassian MCP — discovery, planning, docs, grooming, kanban, reports, and input ingestion",
   "commands": [
+    "as",
     "discover",
     "update-docs",
     "sprint-plan",
@@ -14,6 +15,7 @@
     "ingest"
   ],
   "skills": [
+    "persona-switch",
     "product-discovery",
     "document-update",
     "sprint-planning",

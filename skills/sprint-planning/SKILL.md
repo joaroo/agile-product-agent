@@ -19,6 +19,8 @@ Invoked by `/sprint-plan`. Also triggered when user mentions upcoming sprint, sp
 
 ## Workflow
 
+0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default: Engineering Lead precision (capacity-first, BDD ACs required).
+
 1. **Velocity baseline** — Use `atlassian-search-jira` to fetch last 3 completed sprints:
    `project = {KEY} AND sprint in closedSprints() ORDER BY sprint DESC`
    Calculate average velocity. If no closed sprints exist, ask user for estimate.
