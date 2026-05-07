@@ -4,7 +4,7 @@ Creates and updates Confluence pages with structured, well-formatted content.
 
 Derived from: technical-writer + documentation-engineer (awesome-agnostic-skills biz)
 
-Style reference: `standards/confluence.md`
+Style references: `standards/confluence.md`, `standards/ux.md`, `standards/design.md`
 
 ## Trigger Conditions
 
@@ -21,7 +21,9 @@ Invoked by `/update-docs`. Also triggered when user asks to write, update, or cr
 1. **Resolve target** — If updating: use `atlassian-search-confluence` to find the page by title. If creating: confirm parent page exists via `atlassian-read-confluence`
 2. **Read current state** (updates only) — Use `atlassian-read-confluence` to fetch existing content before any modification
 3. **Draft content** — Apply `standards/confluence.md`:
-   - Title follows naming convention (e.g. `Decision: X`, `YYYY-MM-DD Meeting Name`)
+   - Title follows naming convention per `standards/confluence.md` (e.g. `Decision: X`, `YYYY-MM-DD Meeting Name`, `Design Spec: X`)
+   - For UX artifacts (research reports, personas, journey maps): use templates from `standards/ux.md`
+   - For design artifacts (specs, component docs, handoff notes, design reviews): use templates from `standards/design.md`
    - Owner + Last reviewed + Status header block
    - Short summary paragraph
    - Structured sections per page type (decision record, spec, meeting notes, etc.)

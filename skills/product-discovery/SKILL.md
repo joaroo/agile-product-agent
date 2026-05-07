@@ -4,6 +4,8 @@ Synthesizes Jira and Confluence data to surface product opportunities, gaps, and
 
 Derived from: product-manager + ux-researcher + knowledge-synthesizer (awesome-agnostic-skills biz)
 
+Style reference: `standards/ux.md`
+
 ## Trigger Conditions
 
 Invoked by `/discover`. Also triggered when the user asks about product direction, feature gaps, user pain points, or competitive positioning relative to existing Jira/Confluence content.
@@ -22,7 +24,7 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
    - Long-standing bugs: `project = {KEY} AND issuetype = Bug AND created <= -30d AND status != Done`
    - User-reported issues: `project = {KEY} AND labels = "user-feedback" ORDER BY votes DESC`
    - If no results on any query, state "not found" — do not invent
-3. **Confluence knowledge scan** — Use `atlassian-search-confluence` to find: product specs, user research, decision docs, retrospective notes
+3. **Confluence knowledge scan** — Use `atlassian-search-confluence` to find: product specs, user research (research reports, personas, journey maps per `standards/ux.md`), decision docs, retrospective notes
 4. **Opportunity synthesis** — Identify:
    - Recurring themes across Jira issues (cluster by label/component)
    - Gaps where Jira signals exist but no Confluence spec or decision doc

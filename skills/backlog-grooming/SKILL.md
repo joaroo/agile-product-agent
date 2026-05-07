@@ -4,7 +4,7 @@ Queries, prioritizes, and improves the quality of the Jira backlog. Suggests sto
 
 Derived from: business-analyst + product-manager (awesome-agnostic-skills biz)
 
-Style references: `standards/jira.md`, `standards/bdd.md`
+Style references: `standards/jira.md`, `standards/bdd.md`, `standards/design.md`
 
 ## Trigger Conditions
 
@@ -71,4 +71,5 @@ Acceptance Criteria:
 - Never delete or archive items without explicit user confirmation
 - Acceptance criteria drafts must follow BDD Given/When/Then format per `standards/bdd.md` — testable and observable, not aspirational
 - Issue titles must follow naming conventions in `standards/jira.md`
+- Design task ACs use outcome-based format per `standards/design.md` — never process steps
 - Duplicate detection uses search results, not pattern-matching assumptions

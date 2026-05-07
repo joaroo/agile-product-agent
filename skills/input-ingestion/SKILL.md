@@ -4,7 +4,7 @@ Parses unstructured inputs — local docs, meeting notes, chat transcripts, or e
 
 Derived from: business-analyst (requirements extraction) + technical-writer (awesome-agnostic-skills biz)
 
-Style references: `standards/jira.md`, `standards/bdd.md`, `standards/confluence.md`
+Style references: `standards/jira.md`, `standards/bdd.md`, `standards/confluence.md`, `standards/ux.md`, `standards/design.md`
 
 ## Trigger Conditions
 
@@ -37,10 +37,11 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
    - Suggested assignee: if name mentioned in context
    - Priority: High if deadline mentioned or marked urgent, Medium otherwise
 
-4. **Draft Confluence page** — If decisions or context blocks exist, follow `standards/confluence.md`:
-   - Title per naming convention: `YYYY-MM-DD [Meeting Name]` or `Decision: [topic]`
-   - Page type template: meeting notes or decision record as appropriate
-   - Sections: Context | Decisions | Open Questions | Action Items
+4. **Draft Confluence page** — If decisions or context blocks exist, follow the relevant standard:
+   - General notes/decisions: `standards/confluence.md` (meeting notes or decision record template)
+   - UX research content (research findings, personas, journey maps): `standards/ux.md`
+   - Design content (specs, handoff notes, design review notes): `standards/design.md`
+   - Title per naming convention in the relevant standard
 
 5. **Present for review** — Show all drafted items. Do NOT write to Jira or Confluence until user explicitly confirms each item or says "create all"
 
