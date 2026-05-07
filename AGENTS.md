@@ -51,6 +51,18 @@ DEFAULT_CONFLUENCE_SPACE_ID=    # e.g. ~accountid or space key
 DEFAULT_JIRA_BOARD_ID=          # numeric board ID for kanban/burndown
 ```
 
+## Persona Awareness
+
+Skills should adapt tone, detail level, and output structure based on the user's role. See `standards/personas.md` for the five core personas and how each prefers outputs structured:
+
+- **Product Manager** — insight before evidence, strategic framing, decision records
+- **UX Designer** — exact artifact templates, user-centric language, open questions flagged
+- **Engineering Lead** — BDD ACs, edge cases, precise scope, honest status
+- **Scrum Master** — metrics first, ceremony-ready outputs, flow/risk signals
+- **Business Analyst** — requirements traceability, structured templates, ACs that are testable
+
+If the user's role is unclear, default to engineering lead precision for ACs and scoping.
+
 ## Anti-hallucination Rules
 
 - NEVER invent Jira issue keys, ticket titles, or status values — always search first
