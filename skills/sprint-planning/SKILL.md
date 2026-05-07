@@ -4,6 +4,8 @@ Reads the Jira backlog, analyzes capacity and priorities, proposes a sprint scop
 
 Derived from: scrum-master + project-manager (awesome-agnostic-skills biz)
 
+Style references: `standards/jira.md`, `standards/confluence.md`
+
 ## Trigger Conditions
 
 Invoked by `/sprint-plan`. Also triggered when user mentions upcoming sprint, sprint kickoff, or asks to plan next iteration.
@@ -64,4 +66,5 @@ Invoked by `/sprint-plan`. Also triggered when user mentions upcoming sprint, sp
 - Story point totals must not exceed 85% of stated capacity
 - Sprint goal must reference user value, not internal tasks
 - Never move items to sprint without explicit user confirmation
-- If acceptance criteria missing on >50% of items, flag before proceeding
+- If acceptance criteria missing on >50% of items, flag before proceeding — ACs must follow `standards/bdd.md` to count as present
+- Sprint planning Confluence page follows meeting notes template in `standards/confluence.md`

@@ -4,6 +4,8 @@ Parses unstructured inputs — local docs, meeting notes, chat transcripts, or e
 
 Derived from: business-analyst (requirements extraction) + technical-writer (awesome-agnostic-skills biz)
 
+Style references: `standards/jira.md`, `standards/bdd.md`, `standards/confluence.md`
+
 ## Trigger Conditions
 
 Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a doc path, or asks to "create tickets from this".
@@ -28,15 +30,16 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
    - **Open questions**: unresolved items, "TBD", questions without answers
    - **Context blocks**: background, goals, constraints worth preserving in Confluence
 
-3. **Draft Jira issues** — For each action item:
-   - Title: imperative sentence, <10 words
-   - Description: original context + source reference
-   - Type: Task (default) or Bug (if explicitly a defect)
+3. **Draft Jira issues** — For each action item, follow `standards/jira.md`:
+   - Title: imperative sentence per naming convention, <10 words
+   - Description: Context + Acceptance Criteria sections; ACs in BDD Given/When/Then format per `standards/bdd.md`
+   - Type: Story (user-facing), Task (internal), or Bug (defect) per issue type definitions
    - Suggested assignee: if name mentioned in context
    - Priority: High if deadline mentioned or marked urgent, Medium otherwise
 
-4. **Draft Confluence page** — If decisions or context blocks exist:
-   - Title: "[Source] — [Date] Notes" or "Decision: [topic]"
+4. **Draft Confluence page** — If decisions or context blocks exist, follow `standards/confluence.md`:
+   - Title per naming convention: `YYYY-MM-DD [Meeting Name]` or `Decision: [topic]`
+   - Page type template: meeting notes or decision record as appropriate
    - Sections: Context | Decisions | Open Questions | Action Items
 
 5. **Present for review** — Show all drafted items. Do NOT write to Jira or Confluence until user explicitly confirms each item or says "create all"

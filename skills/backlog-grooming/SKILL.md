@@ -4,6 +4,8 @@ Queries, prioritizes, and improves the quality of the Jira backlog. Suggests sto
 
 Derived from: business-analyst + product-manager (awesome-agnostic-skills biz)
 
+Style references: `standards/jira.md`, `standards/bdd.md`
+
 ## Trigger Conditions
 
 Invoked by `/groom`. Also triggered when user asks to refine, clean, or prioritize backlog, or wants to improve story quality.
@@ -39,7 +41,7 @@ Invoked by `/groom`. Also triggered when user asks to refine, clean, or prioriti
 
 5. **Confirm changes** — Present all suggestions to user before any writes
 
-6. **Apply** (on confirmation) — Use `atlassian-write-jira` to update descriptions, add ACs, adjust priority
+6. **Apply** (on confirmation) — Use `atlassian-write-jira` to update descriptions, add ACs, adjust priority. All AC drafts must follow `standards/bdd.md` Given/When/Then format and `standards/jira.md` description template
 
 ## Output Requirements
 
@@ -67,5 +69,6 @@ Acceptance Criteria:
 - All issue data from live Jira queries — never fabricate estimates or priorities
 - Stale threshold (90 days) applied consistently
 - Never delete or archive items without explicit user confirmation
-- Acceptance criteria drafts must be testable, not aspirational
+- Acceptance criteria drafts must follow BDD Given/When/Then format per `standards/bdd.md` — testable and observable, not aspirational
+- Issue titles must follow naming conventions in `standards/jira.md`
 - Duplicate detection uses search results, not pattern-matching assumptions

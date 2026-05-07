@@ -4,6 +4,8 @@ Creates and updates Confluence pages with structured, well-formatted content.
 
 Derived from: technical-writer + documentation-engineer (awesome-agnostic-skills biz)
 
+Style reference: `standards/confluence.md`
+
 ## Trigger Conditions
 
 Invoked by `/update-docs`. Also triggered when user asks to write, update, or create a Confluence page, spec, ADR, meeting notes template, or wiki entry.
@@ -18,12 +20,12 @@ Invoked by `/update-docs`. Also triggered when user asks to write, update, or cr
 
 1. **Resolve target** — If updating: use `atlassian-search-confluence` to find the page by title. If creating: confirm parent page exists via `atlassian-read-confluence`
 2. **Read current state** (updates only) — Use `atlassian-read-confluence` to fetch existing content before any modification
-3. **Draft content** — Apply documentation standards:
-   - Clear H1 title
-   - Short summary paragraph (what this page is, why it exists)
-   - Structured sections with H2/H3 headings
-   - Decision rationale for specs/ADRs (Context → Decision → Consequences)
-   - Code blocks for any technical content
+3. **Draft content** — Apply `standards/confluence.md`:
+   - Title follows naming convention (e.g. `Decision: X`, `YYYY-MM-DD Meeting Name`)
+   - Owner + Last reviewed + Status header block
+   - Short summary paragraph
+   - Structured sections per page type (decision record, spec, meeting notes, etc.)
+   - Code blocks with language specifier for any technical content
    - Last-updated note at bottom
 4. **Confirm before write** — Show draft to user for approval if content is substantial (>200 words) or the page is being overwritten
 5. **Write** — Use `atlassian-write-confluence` with the confirmed content
