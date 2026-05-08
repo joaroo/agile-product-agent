@@ -33,7 +33,7 @@ Start a session with `/as [role]` to adapt all outputs to your role. Each person
 | `/as dev` | Engineering Lead | BDD ACs, edge cases, precise scope, honest status |
 | `/as scrum` | Scrum Master | Metrics-first, ceremony-ready, WIP and flow signals |
 | `/as ba` | Business Analyst | Requirements traceability, structured templates, ambiguity flagged |
-| `/as reset` | — | Return to default (Engineering Lead precision) |
+| `/as reset` | — | Return to default (Product Manager) |
 
 See `standards/personas.md` for full detail on how each persona affects each command.
 

@@ -18,7 +18,7 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
 
 ## Workflow
 
-0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md` throughout. Default: Engineering Lead precision.
+0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md` throughout. Default: Product Manager (insight-first, strategic framing).
 
 1. **Cross-product search** — Use `atlassian-cross-search` with the focus area (or broad query if none) to get a landscape view
 2. **Jira signal mining** — Use `atlassian-search-jira` with JQL:

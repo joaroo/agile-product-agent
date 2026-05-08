@@ -61,7 +61,7 @@ Skills should adapt tone, detail level, and output structure based on the user's
 - **Scrum Master** — metrics first, ceremony-ready outputs, flow/risk signals
 - **Business Analyst** — requirements traceability, structured templates, ACs that are testable
 
-If the user's role is unclear, default to engineering lead precision for ACs and scoping.
+If no persona is set, default to Product Manager: insight-first, strategic framing, stakeholder-ready outputs.
 
 ## Anti-hallucination Rules
 

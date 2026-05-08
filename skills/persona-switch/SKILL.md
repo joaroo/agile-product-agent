@@ -24,8 +24,8 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 ## Workflow
 
 1. **Parse input**
-   - No argument → display current persona (or "No persona set — defaulting to Engineering Lead precision")
-   - `reset` → clear persona, confirm "Persona cleared. Defaulting to Engineering Lead precision."
+   - No argument → display current persona (or "No persona set — defaulting to Product Manager")
+   - `reset` → clear persona, confirm "Persona cleared. Defaulting to Product Manager."
    - Known alias → resolve to full persona name, confirm activation
    - Unknown input → list valid options, do not guess
 
@@ -78,4 +78,4 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 
 ## Default (no persona set)
 
-Engineering Lead precision: BDD ACs, explicit scope, honest status. This is the safest default — outputs are usable by all roles even if not optimally framed for each.
+Product Manager: insight-first, strategic framing, stakeholder-ready. Recommendations lead, evidence follows. Outputs are accessible to all roles and suitable for sharing upward.
