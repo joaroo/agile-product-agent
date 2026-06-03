@@ -1,6 +1,14 @@
+---
+description: Project health, burndown, and velocity report.
+argument-hint: [sprint | date range]
+---
+
 # /status
 
 Run the **status-report** skill.
+
+Reporting period: $ARGUMENTS
+(If empty, report on the current sprint.)
 
 Generates a project health report with burndown data, velocity trends, and risk signals from Jira.
 
@@ -25,4 +33,4 @@ See `skills/status-report/SKILL.md` for full workflow.
 
 - `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
 - `DEFAULT_JIRA_BOARD_ID` in AGENTS.md (for burndown data)
-- Atlassian OAuth active
+- Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

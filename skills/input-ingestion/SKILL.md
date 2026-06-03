@@ -1,10 +1,15 @@
+---
+name: input-ingestion
+description: Parse local docs, meeting notes, transcripts, or email into draft Jira issues and Confluence pages for review before any write. Use when the user runs /ingest, shares a doc or notes, or asks to create tickets from content.
+---
+
 # input-ingestion
 
 Parses unstructured inputs — local docs, meeting notes, chat transcripts, or email — and extracts structured Jira issues and Confluence page content for human review before any write.
 
 Derived from: business-analyst (requirements extraction) + technical-writer (awesome-agnostic-skills biz)
 
-Style references: `standards/jira.md`, `standards/bdd.md`, `standards/confluence.md`, `standards/ux.md`, `standards/design.md`
+Style references: `standards/jira.md`, `standards/bdd.md`, `standards/confluence.md`, `standards/ux.md`, `standards/design.md`, `standards/requirements.md`, `standards/local-store.md`
 
 ## Trigger Conditions
 
@@ -19,7 +24,7 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
 
 ## Workflow
 
-0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. BA persona: flag ambiguity before creating tickets. UX persona: route to UX/design templates automatically.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default persona: Product Manager. BA persona: flag ambiguity before creating tickets and route requirements content to `standards/requirements.md`. UX Researcher: route to `standards/ux.md`; Designer: route to `standards/design.md`.
 
 1. **Ingest source**
    - `file`: Read the file from local filesystem (markdown, txt, pdf summary)
@@ -43,6 +48,7 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
    - General notes/decisions: `standards/confluence.md` (meeting notes or decision record template)
    - UX research content (research findings, personas, journey maps): `standards/ux.md`
    - Design content (specs, handoff notes, design review notes): `standards/design.md`
+   - Requirements content (requirements specs, traceability matrices, process flows): `standards/requirements.md`
    - Title per naming convention in the relevant standard
 
 5. **Present for review** — Show all drafted items. Do NOT write to Jira or Confluence until user explicitly confirms each item or says "create all"

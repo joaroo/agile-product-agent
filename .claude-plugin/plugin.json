@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "joaroo",
   "license": "MIT",
-  "description": "Agile product workflows via Atlassian MCP — discovery, planning, docs, grooming, kanban, reports, and input ingestion",
+  "description": "Agile product workflows via Atlassian MCP — discovery, planning, docs, grooming, kanban, reports, retrospectives, input ingestion, and local-to-Atlassian sync",
   "commands": [
     "as",
     "discover",
@@ -12,7 +12,9 @@
     "groom",
     "status",
     "kanban",
-    "ingest"
+    "ingest",
+    "retro",
+    "sync"
   ],
   "skills": [
     "persona-switch",
@@ -22,7 +24,9 @@
     "backlog-grooming",
     "status-report",
     "kanban-workflow",
-    "input-ingestion"
+    "input-ingestion",
+    "retrospective",
+    "local-sync"
   ],
   "mcp_config": ".mcp.json"
 }

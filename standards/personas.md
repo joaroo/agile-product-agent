@@ -33,36 +33,63 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 
 ---
 
-## 2. UX Designer — "the advocate"
+## 2. UX Researcher — "the listener"
 
-**Goal:** Understand users deeply, translate research into clear design direction, get designs implemented faithfully.
+**Goal:** Understand users deeply through research, surface insights and evidence to drive better product decisions.
 
 **Typical requests:**
-- `/update-docs` — create a research report, persona, journey map, or design spec
+- `/update-docs` — create a research report, persona, or journey map
 - `/ingest` — parse usability test notes or interview transcripts into findings
 - `/discover` — what does existing research say about this area?
-- `/groom` — improve UX-related stories before sprint
 
 **What they value:**
-- Correct artifact structure — research reports, specs, and handoff docs in the right format
-- User-centric language — outcomes for users, not features for the business
-- Fidelity to templates — they'll share these docs with engineering and stakeholders
-- Accessibility considerations included by default
+- Correct artifact structure — research reports, personas, and journey maps in the right format
+- User-centric language — findings stated as user behaviours and attitudes, not recommendations
+- Evidence and quotes — conclusions backed by data, not opinions
+- Open questions flagged — don't paper over what the research didn't answer
 
 **Output style:**
-- Use templates from `standards/ux.md` and `standards/design.md` exactly
+- Use templates from `standards/ux.md` exactly
 - Lead with user impact, not design decisions
-- Include evidence and quotes where relevant
-- Flag open questions clearly — designers don't want false confidence
+- Include participant quotes and observed behaviours as evidence
+- Flag open questions explicitly; never project false confidence
+
+**Frustrations to avoid:**
+- Research artifacts that read like product specs
+- Recommendations without evidence
+- Confusing research synthesis with design direction
+
+---
+
+## 3. Designer — "the maker"
+
+**Goal:** Translate research and requirements into clear design direction, get designs implemented faithfully.
+
+**Typical requests:**
+- `/update-docs` — create a design spec, component doc, or handoff note
+- `/groom` — improve design-related stories before sprint; check accessibility ACs
+- `/ingest` — parse design review notes into structured Confluence pages
+
+**What they value:**
+- Correct artifact structure — specs, handoff notes, and component docs in the right format
+- All states covered by default — empty, error, loading never omitted
+- Accessibility by default — a11y checklist in every spec and AC
+- Outcome-based ACs — "all states documented" not "designer opens Figma"
+
+**Output style:**
+- Use templates from `standards/design.md` exactly
+- Lead with the design deliverable, not the process
+- Include all states (default, loading, empty, error, success) in every spec
+- Accessibility checklist always present
 
 **Frustrations to avoid:**
 - Skipping states (empty, error, loading) in design specs
 - Vague ACs like "design looks good" — use outcome-based format per `standards/design.md`
-- Confusing UX research artifacts with product specs
+- Confusing design specs with UX research artifacts
 
 ---
 
-## 3. Engineering Lead — "the builder"
+## 4. Engineering Lead — "the builder"
 
 **Goal:** Understand what to build, why, and how it fits the system — then execute without ambiguity.
 
@@ -91,7 +118,7 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 
 ---
 
-## 4. Scrum Master / Delivery Manager — "the facilitator"
+## 5. Scrum Master / Delivery Manager — "the facilitator"
 
 **Goal:** Keep the team moving, remove blockers, run good ceremonies, make delivery predictable.
 
@@ -100,6 +127,7 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 - `/kanban` — triage new issues, check WIP limits, review flow
 - `/sprint-plan` — facilitate the planning process
 - `/groom` — prepare backlog for upcoming sprint
+- `/retro` — run a sprint retrospective and write the retro page
 
 **What they value:**
 - Data-driven summaries — velocity, burndown, WIP — not opinions
@@ -120,7 +148,7 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 
 ---
 
-## 5. Business Analyst — "the translator"
+## 6. Business Analyst — "the translator"
 
 **Goal:** Turn messy stakeholder input into clear, well-structured requirements the team can build from.
 
@@ -139,7 +167,7 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 **Output style:**
 - Use Jira description template (Context + ACs + Out of Scope) from `standards/jira.md`
 - ACs in Given/When/Then per `standards/bdd.md`
-- Confluence pages follow the relevant template — don't freeform
+- Confluence pages use requirements templates from `standards/requirements.md` — don't freeform
 - When ingesting input, flag ambiguity rather than assuming
 
 **Frustrations to avoid:**
@@ -152,7 +180,11 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 ## How Skills Should Use These Personas
 
 - If the user identifies their role at the start of a session, adapt accordingly throughout
-- When output format is ambiguous, default to the most structured option (engineering lead standard)
+- Default persona when none is set: **Product Manager** — insight-first, strategic framing, stakeholder-ready
 - For `/status` and `/discover`, lead with executive summary suitable for a PM or stakeholder; include detail below
 - For `/groom` and `/sprint-plan`, default to engineering lead precision on ACs and scope
-- For `/update-docs` and `/ingest`, ask "who is this for?" if the page type is unclear — the answer determines which template to use
+- For `/update-docs` and `/ingest`, ask "who is this for?" if the page type is unclear — the answer determines which template to use:
+  - UX Researcher → `standards/ux.md`
+  - Designer → `standards/design.md`
+  - Business Analyst → `standards/requirements.md`
+- For `/retro`, default to Product Manager framing (themes and outcomes); Scrum Master persona switches to ceremony-ready format

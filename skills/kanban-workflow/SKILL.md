@@ -1,8 +1,15 @@
+---
+name: kanban-workflow
+description: Triage incoming work, move cards through kanban stages, check WIP limits, and review flow in Jira. Use when the user runs /kanban or asks to triage, move cards, check WIP, or improve flow.
+---
+
 # kanban-workflow
 
 Triages incoming work, moves cards through kanban stages, and maintains flow hygiene in Jira.
 
 Derived from: scrum-master (kanban mode) + business-analyst (awesome-agnostic-skills biz)
+
+Style references: `standards/jira.md`, `standards/local-store.md`
 
 ## Trigger Conditions
 
@@ -16,7 +23,7 @@ Invoked by `/kanban`. Also triggered when user asks to triage new issues, move c
 
 ## Workflow
 
-0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default: WIP violations and blockers flagged at top.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default persona: Product Manager; surface WIP violations and blockers at the top regardless of persona.
 
 ### triage
 1. Fetch new/unprocessed issues: `project = {KEY} AND status = "To Do" AND created >= -7d ORDER BY created DESC`

@@ -1,6 +1,14 @@
+---
+description: Groom and prioritize the Jira backlog.
+argument-hint: [epic | label | mode]
+---
+
 # /groom
 
 Run the **backlog-grooming** skill.
+
+Arguments: $ARGUMENTS
+(If empty, run a full grooming pass on the default project.)
 
 Reviews backlog quality, suggests priorities, flags stale items, and drafts acceptance criteria.
 
@@ -26,4 +34,4 @@ See `skills/backlog-grooming/SKILL.md` for full workflow.
 ## Required Config
 
 - `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- Atlassian OAuth active with Jira write permission
+- Atlassian OAuth active with Jira write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

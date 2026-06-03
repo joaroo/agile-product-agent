@@ -1,6 +1,14 @@
+---
+description: Set the active output persona for the session.
+argument-hint: [pm | ux | design | dev | scrum | ba | reset]
+---
+
 # /as
 
 Set the active persona for this session. Subsequent commands will adapt their output tone, structure, and detail level accordingly.
+
+Requested persona: $ARGUMENTS
+(If empty, show the current persona.)
 
 ## Usage
 
@@ -15,7 +23,8 @@ Set the active persona for this session. Subsequent commands will adapt their ou
 | Shorthand | Full role |
 |-----------|-----------|
 | `pm` | Product Manager |
-| `ux` | UX Designer |
+| `ux` | UX Researcher |
+| `design` | Designer |
 | `dev` | Engineering Lead |
 | `scrum` | Scrum Master |
 | `ba` | Business Analyst |
@@ -25,6 +34,7 @@ Set the active persona for this session. Subsequent commands will adapt their ou
 ```
 /as pm
 /as ux
+/as design
 /as dev
 /as scrum
 /as ba

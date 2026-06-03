@@ -1,6 +1,14 @@
+---
+description: Create or update a Confluence page.
+argument-hint: [page title or topic]
+---
+
 # /update-docs
 
 Run the **document-update** skill.
+
+Arguments: $ARGUMENTS
+(If empty, ask which page to create or update.)
 
 Creates or updates a Confluence page with structured, well-formatted content.
 
@@ -23,4 +31,4 @@ See `skills/document-update/SKILL.md` for full workflow.
 ## Required Config
 
 - `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
-- Atlassian OAuth active with Confluence write permission
+- Atlassian OAuth active with Confluence write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

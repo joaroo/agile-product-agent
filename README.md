@@ -1,13 +1,22 @@
 # agile-product-agent
 
-A Claude Code plugin for agile product workflows. Connects Jira and Confluence via the official Atlassian MCP server to enable product discovery, documentation, sprint planning, backlog grooming, kanban management, status reporting, and input ingestion from local docs, meeting notes, and email.
+A Claude Code plugin for agile product workflows — product discovery, documentation, sprint planning, backlog grooming, kanban management, status reporting, retrospectives, and input ingestion from local docs, meeting notes, and email. Works with Jira and Confluence via the official Atlassian MCP server, or fully offline against local `workspace/` files when no connection is configured.
 
 ## Setup
 
-1. Copy `.mcp.json.example` to `.mcp.json`
-2. Run `claude` in this directory — it will prompt for Atlassian OAuth on first tool use
+1. (Optional) Copy `.mcp.json.example` to `.mcp.json` to enable live Atlassian access
+2. Run `claude` in this directory — it will prompt for Atlassian OAuth on first tool use if `.mcp.json` is present
 3. Fill in your Jira project keys and Confluence space IDs in `connectors/atlassian/CONNECTOR.md`
 4. (Optional) Set `EMAIL_MCP_TOOL` in `.env` to enable `/ingest` from email
+
+### Local fallback
+
+No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the agent automatically reads and writes local markdown files under `workspace/jira/` and `workspace/confluence/`, mirroring the Jira/Confluence object model. All commands work end-to-end with zero external setup.
+
+- `workspace/` is git-ignored and treated as private product data
+- See `connectors/local/CONNECTOR.md` for activation, layout, and validation steps
+- See `standards/local-store.md` for file formats and JQL/CQL translation
+- Worked offline first? Run `/sync` once Atlassian is connected to push `workspace/` up.
 
 ## Commands
 
@@ -21,6 +30,8 @@ A Claude Code plugin for agile product workflows. Connects Jira and Confluence v
 | `/status` | Project health + burndown report |
 | `/kanban` | Triage and move Kanban cards |
 | `/ingest` | Parse docs, meeting notes, or email into Jira issues / Confluence pages |
+| `/retro` | Facilitate a sprint retrospective and write the retro page |
+| `/sync` | Push local `workspace/` up to Jira and Confluence (requires live Atlassian connection) |
 
 ## Personas
 
@@ -29,7 +40,8 @@ Start a session with `/as [role]` to adapt all outputs to your role. Each person
 | Command | Role | Output style |
 |---------|------|-------------|
 | `/as pm` | Product Manager | Insight-first, strategic framing, stakeholder-ready |
-| `/as ux` | UX Designer | UX/design templates, user-centric language, open questions flagged |
+| `/as ux` | UX Researcher | Research artifact templates, user-centric language, evidence and open questions flagged |
+| `/as design` | Designer | Design artifact templates, all states + accessibility by default, outcome-based ACs |
 | `/as dev` | Engineering Lead | BDD ACs, edge cases, precise scope, honest status |
 | `/as scrum` | Scrum Master | Metrics-first, ceremony-ready, WIP and flow signals |
 | `/as ba` | Business Analyst | Requirements traceability, structured templates, ambiguity flagged |
@@ -50,9 +62,12 @@ See `skills/` for full workflow definitions. Each skill embeds the relevant comp
 | `standards/bdd.md` | Given/When/Then, scenario naming, AC format |
 | `standards/ux.md` | Research artifacts, personas, journey maps, usability testing |
 | `standards/design.md` | Component specs, handoff, design review, design system governance |
+| `standards/requirements.md` | Requirements specs, traceability matrix, process flows (BA artifacts) |
 | `standards/personas.md` | Agent user personas and per-persona output adaptations |
+| `standards/local-store.md` | Local fallback file formats, key allocation, JQL/CQL translation |
 
 ## Connectors
 
 - `connectors/atlassian/` — Atlassian MCP (Jira + Confluence)
+- `connectors/local/` — Local file fallback (auto-active when Atlassian MCP is absent)
 - `connectors/email/` — Provider-agnostic email MCP (set `EMAIL_MCP_TOOL`)

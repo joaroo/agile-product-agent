@@ -1,10 +1,15 @@
+---
+name: sprint-planning
+description: Plan the next sprint from the Jira backlog: compute velocity, match capacity, and propose scope plus a user-value sprint goal. Use when the user runs /sprint-plan or mentions sprint kickoff or planning the next iteration.
+---
+
 # sprint-planning
 
 Reads the Jira backlog, analyzes capacity and priorities, proposes a sprint scope, and writes the sprint goal to Jira/Confluence.
 
 Derived from: scrum-master + project-manager (awesome-agnostic-skills biz)
 
-Style references: `standards/jira.md`, `standards/confluence.md`
+Style references: `standards/jira.md`, `standards/confluence.md`, `standards/local-store.md`
 
 ## Trigger Conditions
 
@@ -19,7 +24,7 @@ Invoked by `/sprint-plan`. Also triggered when user mentions upcoming sprint, sp
 
 ## Workflow
 
-0. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default: Product Manager (sprint goal and user value emphasis).
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default: Product Manager (sprint goal and user value emphasis).
 
 1. **Velocity baseline** — Use `atlassian-search-jira` to fetch last 3 completed sprints:
    `project = {KEY} AND sprint in closedSprints() ORDER BY sprint DESC`

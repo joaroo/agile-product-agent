@@ -1,6 +1,14 @@
+---
+description: Parse docs, notes, or email into Jira issues / Confluence pages.
+argument-hint: [file path | email label]
+---
+
 # /ingest
 
 Run the **input-ingestion** skill.
+
+Source: $ARGUMENTS
+(If empty, parse content pasted directly into the conversation.)
 
 Parses local docs, meeting notes, chat transcripts, or email and extracts Jira issues and Confluence content for review before any write.
 
@@ -25,5 +33,5 @@ See `skills/input-ingestion/SKILL.md` for full workflow.
 
 - `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
 - `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md (for page creation)
-- Atlassian OAuth active with write permission
-- `EMAIL_MCP_TOOL` in `.env` (only required for email source)
+- Atlassian OAuth active with write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)
+- `EMAIL_MCP_TOOL` in `.env` (only required for email source; email has no local fallback)

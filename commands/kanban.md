@@ -1,6 +1,14 @@
+---
+description: Triage and move Kanban cards; check WIP and flow.
+argument-hint: [triage | move | wip-check | flow-review]
+---
+
 # /kanban
 
 Run the **kanban-workflow** skill.
+
+Action: $ARGUMENTS
+(If empty, ask which action to run.)
 
 Triages incoming work, moves cards, checks WIP limits, and reviews flow health.
 
@@ -25,4 +33,4 @@ See `skills/kanban-workflow/SKILL.md` for full workflow.
 ## Required Config
 
 - `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- Atlassian OAuth active with Jira write permission (for moves)
+- Atlassian OAuth active with Jira write permission (for moves) — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)
