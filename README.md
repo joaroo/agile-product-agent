@@ -1,17 +1,77 @@
 # agile-product-agent
 
-A Claude Code plugin for agile product workflows — an **end-to-end product lifecycle** (ingest → discovery → UX → design → dev handover) plus sprint planning, backlog grooming, kanban management, status reporting, retrospectives, and input ingestion from local docs, BRDs, meeting notes, and email. Works with Jira and Confluence via the official Atlassian MCP server, or fully offline against local `workspace/` files when no connection is configured.
+> From a messy BRD to dev-ready, BDD-tested stories — one gated pipeline, each stage handled by the right hat.
+
+![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-7c3aed)
+![Jira + Confluence](https://img.shields.io/badge/Jira_%2B_Confluence-via_MCP-0052cc)
+![Works offline](https://img.shields.io/badge/works-offline-2ea44f)
+![License](https://img.shields.io/badge/license-MIT-555)
+
+A Claude Code plugin for agile product workflows. It threads the whole product flow — **ingest → discovery → UX → design → dev handover** — into a single guided pipeline, then adds sprint planning, grooming, kanban, status, and retros on top. Works against Jira and Confluence via the official Atlassian MCP server, or **fully offline** against local `workspace/` files when no connection is configured.
+
+## How it works
+
+```mermaid
+flowchart LR
+    src[/"docs · BRDs<br/>notes · chats"/] --> I
+    subgraph flow["&nbsp;/lifecycle — gated at every step: proceed · edit · stop&nbsp;"]
+        direction LR
+        I["<b>Ingest</b><br/>Business Analyst<br/><i>Input Brief</i>"]
+        D["<b>Discovery</b><br/>Product Manager<br/><i>Discovery Brief</i>"]
+        U["<b>UX</b><br/>UX Researcher<br/><i>Research &amp; Synthesis</i>"]
+        G["<b>Design</b><br/>Designer<br/><i>Design Spec</i>"]
+        H["<b>Dev Handover</b><br/>Engineering Lead<br/><i>Epics + BDD ACs</i>"]
+        I --> D --> U --> G --> H
+    end
+    H --> J[("Jira<br/>issues")]
+    H -.-> delivery[/"sprint-plan<br/>kanban · status"/]
+```
+
+Each stage is owned by the persona that naturally does that work, produces **one canonical artifact** in that persona's format, and pauses for your review before the next stage begins.
+
+| Stage | Persona | Standard | Artifact |
+|-------|---------|----------|----------|
+| Ingest (docs, BRDs, notes, chats) | Business Analyst | `requirements.md` | Input Brief — sources + candidate requirements |
+| Discovery | Product Manager | `confluence.md` (Spec/PRD) | Discovery Brief — problem, goals, opportunities |
+| UX | UX Researcher | `ux.md` | UX Research & Synthesis — personas, journeys, findings |
+| Design | Designer | `design.md` | Design Spec — all states + accessibility + handoff |
+| Dev Handover | Engineering Lead | `jira.md`, `bdd.md` | Epics/stories with BDD ACs + DoR check → Jira issues |
+
+- **Context carries forward.** Every artifact opens with a **Carried Context** header (upstream links, inherited problem, decisions, open questions) — so the next persona always has the thread. No document is written in isolation.
+- **One source of truth per initiative.** A **Lifecycle Index** page tracks stage status and the full traceability chain: source/BRD → requirement IDs → discovery → UX → design → Jira stories.
+- **Run it whole or by stage.** `/lifecycle` walks all five stages and resumes mid-flow (`/lifecycle ux`); or run a single stage standalone with `/ingest`, `/discover`, `/ux`, `/design`, `/handover`. Delivery (`/sprint-plan`, `/kanban`) picks up after handover.
+- **Nothing is written without confirmation** — the same human-in-the-loop gating as `/ingest` and `/sync`.
+
+See `standards/lifecycle.md` for the stage map, Carried Context header, and Lifecycle Index format.
+
+## See it work
+
+You start with a one-line BRD and a thread of meeting notes:
+
+> *"Guests abandon checkout when forced to create an account. We need guest checkout before Black Friday."*
+
+Run `/lifecycle`. Five gated stages later, you have a linked paper trail:
+
+| Stage | What lands |
+|-------|-----------|
+| **Ingest** (BA) | Input Brief: `REQ-1` guest checkout, `REQ-2` post-purchase account prompt — each traced to the BRD |
+| **Discovery** (PM) | Discovery Brief: problem, goals, success metric (checkout completion `+X%`), non-goals |
+| **UX** (UX Researcher) | Personas + a journey map pinpointing the account-wall drop-off, every finding evidence-backed |
+| **Design** (Designer) | Design Spec covering every state (empty / loading / error / success) with an accessibility checklist |
+| **Dev Handover** (Eng Lead) | Epic + stories with Given/When/Then ACs, Definition-of-Ready checked, written to Jira |
+
+Each artifact links back to the one before it, and the Lifecycle Index threads the whole chain end to end.
 
 ## Setup
 
 1. (Optional) Copy `.mcp.json.example` to `.mcp.json` to enable live Atlassian access
-2. Run `claude` in this directory — it will prompt for Atlassian OAuth on first tool use if `.mcp.json` is present
+2. Run `claude` in this directory — it prompts for Atlassian OAuth on first tool use if `.mcp.json` is present
 3. Fill in your Jira project keys and Confluence space IDs in `connectors/atlassian/CONNECTOR.md`
 4. (Optional) Set `EMAIL_MCP_TOOL` in `.env` to enable `/ingest` from email
 
 ### Local fallback
 
-No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the agent automatically reads and writes local markdown files under `workspace/jira/` and `workspace/confluence/`, mirroring the Jira/Confluence object model. All commands work end-to-end with zero external setup.
+No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the agent automatically reads and writes local markdown files under `workspace/jira/` and `workspace/confluence/`, mirroring the Jira/Confluence object model. **All commands work end-to-end with zero external setup.**
 
 - `workspace/` is git-ignored and treated as private product data
 - See `connectors/local/CONNECTOR.md` for activation, layout, and validation steps
@@ -37,28 +97,9 @@ No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the 
 | `/retro` | Facilitate a sprint retrospective and write the retro page |
 | `/sync` | Push local `workspace/` up to Jira and Confluence (requires live Atlassian connection) |
 
-## End-to-end product flow
-
-`/lifecycle` chains the whole product flow into one guided, gated pipeline. Each stage is owned by the persona that naturally does that work, produces **one canonical artifact** in that persona's format, and pauses for your review (`proceed` / `edit` / `stop`) before the next stage.
-
-| Stage | Persona | Standard | Artifact |
-|-------|---------|----------|----------|
-| Ingest (docs, BRDs, notes, chats) | Business Analyst | `requirements.md` | Input Brief — sources + candidate requirements |
-| Discovery | Product Manager | `confluence.md` (Spec/PRD) | Discovery Brief — problem, goals, opportunities |
-| UX | UX Researcher | `ux.md` | UX Research & Synthesis — personas, journeys, findings |
-| Design | Designer | `design.md` | Design Spec — all states + accessibility + handoff |
-| Dev Handover | Engineering Lead | `jira.md`, `bdd.md` | Epics/stories with BDD ACs + DoR check → Jira issues |
-
-- **Context carries forward.** Every stage artifact opens with a **Carried Context** header (upstream links, inherited problem/decisions/open questions), so the next persona always has the thread — no document is written in isolation.
-- **One source of truth per initiative.** A **Lifecycle Index** page tracks stage status and the full traceability chain: source/BRD → requirement IDs → discovery → UX → design → Jira stories.
-- **Run it whole or by stage.** `/lifecycle` walks all five stages and resumes mid-flow (`/lifecycle ux`); or run a single stage standalone with `/ingest`, `/discover`, `/ux`, `/design`, `/handover`. Delivery (`/sprint-plan`, `/kanban`) picks up after handover.
-- **Nothing is written without confirmation** — same human-in-the-loop gating as `/ingest` and `/sync`.
-
-See `standards/lifecycle.md` for the stage map, Carried Context header, and Lifecycle Index format.
-
 ## Personas
 
-Start a session with `/as [role]` to adapt all outputs to your role. Each persona changes how commands structure and frame their responses.
+Start a session with `/as [role]` to adapt all outputs to your role. Each persona changes how commands structure and frame their responses — and is the default lens for its stage in the pipeline above.
 
 | Command | Role | Output style |
 |---------|------|-------------|
