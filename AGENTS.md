@@ -93,6 +93,7 @@ Skills should adapt tone, detail level, and output structure based on the user's
 
 - **Product Manager** — insight before evidence, strategic framing, decision records
 - **UX Researcher** — research artifact templates from `standards/ux.md`, user behaviours not recommendations, evidence and quotes
+- **UX Writer** — content design lens (no stage); voice & tone, microcopy, and terminology from `standards/content.md`; real copy in every state, never placeholder
 - **Designer** — design artifact templates from `standards/design.md`, all states + accessibility by default, outcome-based ACs
 - **Engineering Lead** — BDD ACs, edge cases, precise scope, honest status
 - **Scrum Master** — metrics first, ceremony-ready outputs, flow/risk signals

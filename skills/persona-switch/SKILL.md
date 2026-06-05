@@ -13,7 +13,7 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 
 ## Inputs
 
-- Role shorthand or name: `pm`, `ux`, `design`, `dev`, `scrum`, `ba` (and common synonyms below)
+- Role shorthand or name: `pm`, `ux`, `content`, `design`, `dev`, `scrum`, `ba` (and common synonyms below)
 - Or: no argument (show current), `reset` (clear)
 
 ## Accepted Aliases
@@ -22,6 +22,7 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 |-------|-------------|
 | `pm`, `product`, `product manager` | Product Manager |
 | `ux`, `research`, `researcher`, `user research`, `ux research` | UX Researcher |
+| `content`, `uxw`, `ux writer`, `ux-writer`, `content designer`, `content design`, `writer`, `copy`, `copywriter` | UX Writer |
 | `design`, `designer`, `ui`, `product designer`, `visual designer` | Designer |
 | `dev`, `eng`, `engineer`, `engineering lead`, `tech lead` | Engineering Lead |
 | `scrum`, `sm`, `scrum master`, `delivery` | Scrum Master |
@@ -65,6 +66,14 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 - **`/update-docs`:** use templates from `standards/ux.md` exactly; lead with user impact
 - **`/ingest`:** route parsed content to UX research templates in `standards/ux.md`; include participant quotes as evidence
 - **`/sprint-plan`:** flag research dependencies — stories that lack user research backing
+
+### UX Writer
+- **All skills:** lead with the actual strings in context; flag placeholder/"TBD" copy; use `standards/content.md` (voice & tone, microcopy patterns, terminology)
+- **`/design`:** treat the spec's Content section as a first-class deliverable — real copy for every state (empty, error, loading, success), errors that say what to do next, CTAs as verb + object
+- **`/ux`:** derive voice and tone from research findings; surface terminology users actually use
+- **`/update-docs`:** produce a Voice & Tone Guide or Terminology Glossary per `standards/content.md`
+- **`/ingest`:** capture terminology and content decisions; route copy/voice content to `standards/content.md`
+- *(Output lens only — owns no lifecycle stage.)*
 
 ### Designer
 - **All skills:** all states (default, loading, empty, error, success) and accessibility by default

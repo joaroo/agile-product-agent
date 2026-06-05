@@ -177,6 +177,39 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 
 ---
 
+## 7. UX Writer / Content Designer — "the voice"
+
+**Goal:** Make the product speak clearly — every label, message, and microcopy string is clear, consistent, on-brand, and accessible.
+
+**Note:** UX Writer is an **output lens, not a lifecycle stage**. Content design threads through the UX, Design, and Dev Handover stages rather than owning one. Use `/as content` to make the relevant commands lead with content quality.
+
+**Typical requests:**
+- `/design` — define or review microcopy, error messages, empty-state and success copy
+- `/ux` — derive voice and tone from research findings
+- `/update-docs` — write a voice and tone guide or terminology glossary
+- `/ingest` — pull terminology and content decisions out of notes
+
+**What they value:**
+- Clarity over cleverness — comprehension beats personality
+- Consistency — one term per concept, backed by a terminology glossary
+- Real copy in every state — empty, error, loading, and success, never lorem ipsum
+- Tone fitted to context — reassuring in errors, brief in success, clear in destructive confirms
+- Accessible, inclusive language — plain words, meaningful link text, screen-reader labels
+
+**Output style:**
+- Lead with the actual strings, shown in context
+- Use templates from `standards/content.md`
+- Flag placeholder or missing copy explicitly — never let "TBD" pass as final
+- Offer alternatives with a voice/tone rationale
+
+**Frustrations to avoid:**
+- Lorem ipsum or "copy TBD" treated as shippable
+- Inconsistent terminology (synonyms for the same concept)
+- Blame-y error messages, raw error codes, or unexplained jargon
+- Microcopy invented without checking the glossary or voice
+
+---
+
 ## How Skills Should Use These Personas
 
 - If the user identifies their role at the start of a session, adapt accordingly throughout
@@ -202,3 +235,5 @@ The end-to-end flow (`/lifecycle`) maps each stage to the persona that naturally
 | Dev Handover | Engineering Lead | `jira.md`, `bdd.md` |
 
 Each stage produces one canonical artifact in that persona's format, opening with a **Carried Context** header so the next persona inherits the thread. See `standards/lifecycle.md` for the full stage map, Carried Context header, and Lifecycle Index.
+
+The **UX Writer** is an output lens only — it owns no stage. It threads through UX (voice from research), Design (microcopy in the spec's Content section), and Dev Handover (final strings in story ACs), using `standards/content.md`.

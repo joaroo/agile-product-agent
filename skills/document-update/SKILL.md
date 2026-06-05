@@ -9,7 +9,7 @@ Creates and updates Confluence pages with structured, well-formatted content.
 
 Derived from: technical-writer + documentation-engineer (awesome-agnostic-skills biz)
 
-Style references: `standards/confluence.md`, `standards/ux.md`, `standards/design.md`, `standards/requirements.md`, `standards/local-store.md`
+Style references: `standards/confluence.md`, `standards/ux.md`, `standards/design.md`, `standards/content.md`, `standards/requirements.md`, `standards/local-store.md`
 
 ## Trigger Conditions
 
@@ -31,6 +31,7 @@ Invoked by `/update-docs`. Also triggered when user asks to write, update, or cr
    - Title follows naming convention per `standards/confluence.md` (e.g. `Decision: X`, `YYYY-MM-DD Meeting Name`, `Design Spec: X`)
    - For UX artifacts (research reports, personas, journey maps): use templates from `standards/ux.md`
    - For design artifacts (specs, component docs, handoff notes, design reviews): use templates from `standards/design.md`
+   - For content artifacts (voice and tone guide, terminology glossary): use templates from `standards/content.md`
    - For BA artifacts (requirements specs, traceability matrices, process flows): use templates from `standards/requirements.md`
    - Owner + Last reviewed + Status header block
    - Short summary paragraph

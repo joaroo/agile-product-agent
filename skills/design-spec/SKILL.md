@@ -9,7 +9,7 @@ Translates a Discovery Brief and UX synthesis into a concrete Design Spec ready 
 
 Derived from: product-designer + design-system-architect (awesome-agnostic-skills biz)
 
-Style references: `standards/design.md`, `standards/lifecycle.md`, `standards/confluence.md`, `standards/local-store.md`
+Style references: `standards/design.md`, `standards/content.md`, `standards/lifecycle.md`, `standards/confluence.md`, `standards/local-store.md`
 
 ## Trigger Conditions
 
@@ -30,7 +30,7 @@ Invoked by `/design` and by `product-lifecycle` at the Design stage. Also trigge
 2. **Draft the Design Spec** — Per the Design Spec Template in `standards/design.md`:
    - **Overview**, **User Stories Covered** (link Jira keys if any exist yet — otherwise reference Discovery user stories)
    - **Flows** with entry/exit points and the **States** table — every flow lists Default, Loading, Empty, Error, Success (no state omitted)
-   - **Interactions**, **Edge Cases**, **Content** (exact copy/labels/error strings where decided)
+   - **Interactions**, **Edge Cases**, **Content** (exact copy/labels/error strings where decided — apply `standards/content.md`: real copy for every state, errors that say what to do next, terminology consistent with the glossary)
    - **Accessibility** checklist (keyboard nav, focus order, touch targets ≥44px, WCAG AA contrast, screen-reader labels)
    - **Open Questions** and **Out of Scope**
 

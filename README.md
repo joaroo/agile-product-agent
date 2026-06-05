@@ -106,6 +106,7 @@ Start a session with `/as [role]` to adapt all outputs to your role. Each person
 | `/as pm` | Product Manager | Insight-first, strategic framing, stakeholder-ready |
 | `/as ba` | Business Analyst | Requirements traceability, structured templates, ambiguity flagged |
 | `/as ux` | UX Researcher | Research artifact templates, user-centric language, evidence and open questions flagged |
+| `/as content` | UX Writer | Voice & tone, microcopy, terminology; real copy in every state, never placeholder (output lens, no stage) |
 | `/as design` | Designer | Design artifact templates, all states + accessibility by default, outcome-based ACs |
 | `/as dev` | Engineering Lead | BDD ACs, edge cases, precise scope, honest status |
 | `/as scrum` | Scrum Master | Metrics-first, ceremony-ready, WIP and flow signals |
@@ -127,6 +128,7 @@ See `skills/` for full workflow definitions. Each skill embeds the relevant comp
 | `standards/bdd.md` | Given/When/Then, scenario naming, AC format |
 | `standards/ux.md` | Research artifacts, personas, journey maps, usability testing |
 | `standards/design.md` | Component specs, handoff, design review, design system governance |
+| `standards/content.md` | UX writing — voice & tone, microcopy patterns, terminology, content review |
 | `standards/requirements.md` | Requirements specs, traceability matrix, process flows (BA artifacts) |
 | `standards/personas.md` | Agent user personas and per-persona output adaptations |
 | `standards/local-store.md` | Local fallback file formats, key allocation, JQL/CQL translation |
