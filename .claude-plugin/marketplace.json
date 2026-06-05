@@ -4,7 +4,7 @@
     {
       "name": "agile-product-agent",
       "source": "./",
-      "description": "Agile product workflows via Atlassian MCP — Jira + Confluence discovery, planning, docs, grooming, kanban, reports, and input ingestion",
+      "description": "Agile product workflows via Atlassian MCP — an end-to-end product lifecycle (ingest → discovery → UX → design → dev handover) plus Jira + Confluence planning, docs, grooming, kanban, reports, and input ingestion",
       "repository": "https://github.com/joaroo/agile-product-agent"
     }
   ]

@@ -50,6 +50,7 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 
 ### Product Manager
 - **All skills:** lead with insight or recommendation, evidence below
+- **`/lifecycle`:** owns the Discovery stage — frame the Discovery Brief around the user problem, goals, and success metrics, not a task list
 - **`/discover`:** strategic framing, connect gaps to user outcomes and business goals
 - **`/update-docs`:** use spec or decision record templates; write for stakeholder audience
 - **`/sprint-plan`:** emphasise sprint goal and user value, not just task list
@@ -59,6 +60,7 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 
 ### UX Researcher
 - **All skills:** user-centric language; findings stated as user behaviours and attitudes, not recommendations
+- **`/ux`:** owns the UX stage — produce personas, journey maps, JTBD, and findings per `standards/ux.md`; back every finding with evidence/quotes and flag unevidenced claims as provisional
 - **`/discover`:** surface research artifacts (reports, personas, journey maps) prominently per `standards/ux.md`
 - **`/update-docs`:** use templates from `standards/ux.md` exactly; lead with user impact
 - **`/ingest`:** route parsed content to UX research templates in `standards/ux.md`; include participant quotes as evidence
@@ -66,6 +68,7 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 
 ### Designer
 - **All skills:** all states (default, loading, empty, error, success) and accessibility by default
+- **`/design`:** owns the Design stage — produce a Design Spec with every state + accessibility checklist + handoff notes per `standards/design.md`; run the handoff checklist before marking ready
 - **`/update-docs`:** use templates from `standards/design.md` exactly; include all states and accessibility checklist
 - **`/groom`:** flag missing design specs or handoff docs as a blocker; check accessibility ACs; use outcome-based AC format per `standards/design.md`
 - **`/ingest`:** route parsed content to design templates in `standards/design.md` (design review notes, handoff notes)
@@ -73,6 +76,7 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 
 ### Engineering Lead
 - **All skills:** precision over narrative; edge cases and error states always included
+- **`/handover`:** owns the Dev Handover stage — decompose into epics/stories with BDD ACs (happy/sad/edge), link specs/research, run the Definition-of-Ready check, and list DoR failures rather than hiding them
 - **`/groom`:** BDD ACs required; flag missing context, epic links, or out-of-scope sections
 - **`/sprint-plan`:** capacity-first; flag ungroomed tickets before committing
 - **`/status`:** include risk signals and blockers plainly; no softening
@@ -90,6 +94,7 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 
 ### Business Analyst
 - **All skills:** requirements traceability; every output links to a user need or business goal
+- **`/lifecycle`:** owns the Ingest stage — extract candidate requirements with traceability IDs (REQ-N) from docs/BRDs/notes per `standards/requirements.md`; flag ambiguity before drafting
 - **`/ingest`:** flag ambiguity rather than assuming; ask before creating tickets from unclear input; route requirements content to `standards/requirements.md`
 - **`/groom`:** enforce complete description template (Context + ACs + Out of Scope)
 - **`/update-docs`:** use requirements templates from `standards/requirements.md`; call out when content doesn't fit a template

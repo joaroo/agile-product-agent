@@ -188,3 +188,17 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
   - Designer → `standards/design.md`
   - Business Analyst → `standards/requirements.md`
 - For `/retro`, default to Product Manager framing (themes and outcomes); Scrum Master persona switches to ceremony-ready format
+
+## Lifecycle stage ownership
+
+The end-to-end flow (`/lifecycle`) maps each stage to the persona that naturally owns it. The stage skill adopts that persona as its **default lens** even when no persona is set via `/as`, and never abandons the stage's discipline standard:
+
+| Stage | Owning persona | Standard |
+|-------|----------------|----------|
+| Ingest (docs, BRDs, notes, chats) | Business Analyst | `requirements.md` |
+| Discovery | Product Manager | `confluence.md` (Spec/PRD) |
+| UX | UX Researcher | `ux.md` |
+| Design | Designer | `design.md` |
+| Dev Handover | Engineering Lead | `jira.md`, `bdd.md` |
+
+Each stage produces one canonical artifact in that persona's format, opening with a **Carried Context** header so the next persona inherits the thread. See `standards/lifecycle.md` for the full stage map, Carried Context header, and Lifecycle Index.

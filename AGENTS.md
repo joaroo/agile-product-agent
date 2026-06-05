@@ -65,6 +65,18 @@ Never pulls remote changes down; `workspace/` is the source of truth.
 
 Agents in this tier: `sync-runner`
 
+### Handover agents
+All reader access plus: `atlassian-write-jira` AND `atlassian-write-confluence`.
+Unlike `sync-runner`, these create new content (a handover page + decomposed Jira issues) rather than pushing existing `workspace/` content, and they work in **both** live and local fallback modes.
+Always present the proposed issues and page for review and require explicit user confirmation before any write — never create Jira issues automatically.
+
+Agents in this tier: `dev-handover-runner`
+
+### Orchestrator agents
+Coordinate the stage skills (`input-ingestion`, `product-discovery`, `ux-synthesis`, `design-spec`, `dev-handover`) and the per-initiative Lifecycle Index. The orchestrator owns **no writes of its own** beyond the Lifecycle Index page (via `atlassian-write-confluence`); all stage artifacts are written by the stage skills under their own tiers, and only at a confirmed stage gate. Never auto-advances past a gate.
+
+Agents in this tier: `lifecycle-orchestrator` (see `skills/product-lifecycle/SKILL.md` and `standards/lifecycle.md`)
+
 ## Defaults
 
 Fill in after Atlassian OAuth setup (see `connectors/atlassian/CONNECTOR.md`). In local fallback mode, `DEFAULT_JIRA_PROJECT_KEY` and `DEFAULT_CONFLUENCE_SPACE_ID` name the `workspace/jira/` and `workspace/confluence/` subdirectories respectively. If unset in local mode, prompt the user once and default to `PROD` / `TEAM`.
@@ -87,6 +99,20 @@ Skills should adapt tone, detail level, and output structure based on the user's
 - **Business Analyst** — requirements traceability, structured templates from `standards/requirements.md`, ACs that are testable
 
 If no persona is set, default to Product Manager: insight-first, strategic framing, stakeholder-ready outputs.
+
+### Lifecycle stage ownership
+
+The end-to-end flow (`/lifecycle`) assigns each stage to its owning persona, which becomes the **default lens** for that stage even when no persona is set via `/as`:
+
+| Stage | Owning persona | Stage skill |
+|-------|----------------|-------------|
+| Ingest | Business Analyst | `input-ingestion` |
+| Discovery | Product Manager | `product-discovery` |
+| UX | UX Researcher | `ux-synthesis` |
+| Design | Designer | `design-spec` |
+| Dev Handover | Engineering Lead | `dev-handover` |
+
+A stage never abandons its discipline standard regardless of the active persona (e.g. `/design` always produces all states + accessibility per `standards/design.md`). See `standards/lifecycle.md`.
 
 ## Anti-hallucination Rules
 
