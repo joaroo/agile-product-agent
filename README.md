@@ -90,12 +90,13 @@ No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the 
 | `/design` | Turn UX + discovery into a Design Spec (all states, accessibility, handoff) |
 | `/handover` | Decompose into epics/stories with BDD ACs + a Definition-of-Ready check |
 | `/update-docs` | Create or update Confluence pages |
+| `/sync` | Push local `workspace/` up to Jira and Confluence (requires live Atlassian connection) |
+| **Secondary Command** | **Description** |
 | `/sprint-plan` | Plan next sprint from backlog |
 | `/groom` | Groom and prioritize backlog |
 | `/status` | Project health + burndown report |
 | `/kanban` | Triage and move Kanban cards |
 | `/retro` | Facilitate a sprint retrospective and write the retro page |
-| `/sync` | Push local `workspace/` up to Jira and Confluence (requires live Atlassian connection) |
 
 ## Personas
 
