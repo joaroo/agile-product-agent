@@ -84,8 +84,8 @@ No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the 
 |---------|-------------|
 | `/as [role]` | Set active persona to adapt output tone and structure |
 | `/lifecycle` | Run the end-to-end flow: ingest → discovery → UX → design → dev handover, gated per stage |
-| `/discover` | Product discovery from Jira + Confluence |
 | `/ingest` | Parse docs, BRDs, meeting notes, or email into Jira issues / Confluence pages |
+| `/discover` | Product discovery from Jira + Confluence |
 | `/ux` | Synthesise discovery + research into UX artifacts (personas, journey map, JTBD, findings) |
 | `/design` | Turn UX + discovery into a Design Spec (all states, accessibility, handoff) |
 | `/handover` | Decompose into epics/stories with BDD ACs + a Definition-of-Ready check |
