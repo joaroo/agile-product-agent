@@ -62,10 +62,49 @@ Run `/lifecycle`. Five gated stages later, you have a linked paper trail:
 
 Each artifact links back to the one before it, and the Lifecycle Index threads the whole chain end to end.
 
-## Setup
+## Installation
 
-1. (Optional) Copy `.mcp.json.example` to `.mcp.json` to enable live Atlassian access
-2. Run `claude` in this directory — it prompts for Atlassian OAuth on first tool use if `.mcp.json` is present
+Install it as a Claude Code plugin from the GitHub marketplace:
+
+```text
+/plugin marketplace add joaroo/agile-product-agent
+/plugin install agile-product-agent@joaroo
+```
+
+Then run `/reload-plugins` (or restart Claude Code). All 14 commands (`/lifecycle`, `/ingest`, `/discover`, …) and their skills load automatically.
+
+### Local development
+
+Working from a clone of this repo? Register it as a local marketplace in `.claude/settings.json` at your project root:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "joaroo": {
+      "source": {
+        "source": "directory",
+        "path": "/absolute/path/to/agile-product-agent"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "agile-product-agent@joaroo": true
+  }
+}
+```
+
+This file is git-ignored (it holds a machine-specific path). Reload plugins to pick up your edits.
+
+### (Optional) Connect Atlassian
+
+By default everything runs offline (see **Local fallback** below). To work against live Jira + Confluence:
+
+1. Copy `.mcp.json.example` to `.mcp.json`, then choose a connection method:
+   - **Hosted Rovo MCP server** (no local install, browser OAuth) — the default in the example file
+   - **Local stdio package** (`npx @atlassian/mcp-server`)
+
+   Both expose the same tools — see `connectors/atlassian/CONNECTOR.md` for the exact configs.
+2. Run `claude` — it prompts for Atlassian OAuth on first tool use
 3. Fill in your Jira project keys and Confluence space IDs in `connectors/atlassian/CONNECTOR.md`
 4. (Optional) Set `EMAIL_MCP_TOOL` in `.env` to enable `/ingest` from email
 

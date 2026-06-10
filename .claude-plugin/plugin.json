@@ -3,39 +3,7 @@
   "version": "1.0.0",
   "author": "joaroo",
   "license": "MIT",
-  "description": "Agile product workflows via Atlassian MCP — an end-to-end product lifecycle (ingest → discovery → UX → design → dev handover) plus planning, docs, grooming, kanban, reports, retrospectives, input ingestion, and local-to-Atlassian sync",
-  "commands": [
-    "as",
-    "lifecycle",
-    "discover",
-    "ingest",
-    "ux",
-    "design",
-    "handover",
-    "update-docs",
-    "sprint-plan",
-    "groom",
-    "status",
-    "kanban",
-    "retro",
-    "sync"
-  ],
-  "skills": [
-    "persona-switch",
-    "product-lifecycle",
-    "product-discovery",
-    "input-ingestion",
-    "ux-synthesis",
-    "design-spec",
-    "dev-handover",
-    "document-update",
-    "sprint-planning",
-    "backlog-grooming",
-    "status-report",
-    "kanban-workflow",
-    "retrospective",
-    "local-sync"
-  ],
-  "mcp_config": ".mcp.json"
+  "homepage": "https://github.com/joaroo/agile-product-agent",
+  "repository": "https://github.com/joaroo/agile-product-agent",
+  "description": "Agile product workflows via Atlassian MCP — an end-to-end product lifecycle (ingest → discovery → UX → design → dev handover) plus planning, docs, grooming, kanban, reports, retrospectives, input ingestion, and local-to-Atlassian sync"
 }
-

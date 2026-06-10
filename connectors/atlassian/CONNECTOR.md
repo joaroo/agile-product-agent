@@ -4,6 +4,29 @@ Provides access to Jira and Confluence via the official Atlassian Rovo MCP serve
 
 ## MCP Server
 
+Two connection options — both expose the same `mcp__atlassian__*` tools. Pick whichever you prefer; put it in `.mcp.json`.
+
+### Option A — Hosted (remote) Rovo MCP server
+
+No local install. Authenticates via browser OAuth on first tool call.
+
+```json
+{
+  "mcpServers": {
+    "atlassian": {
+      "type": "http",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    }
+  }
+}
+```
+
+Equivalent CLI: `claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp`
+
+### Option B — Local stdio package
+
+Runs the MCP server locally via `npx`.
+
 ```json
 {
   "mcpServers": {
@@ -15,7 +38,7 @@ Provides access to Jira and Confluence via the official Atlassian Rovo MCP serve
 }
 ```
 
-Copy `.mcp.json.example` → `.mcp.json` to activate.
+Copy `.mcp.json.example` → `.mcp.json` to activate (it ships with Option A; swap in the block above for Option B).
 
 ## Authentication
 
@@ -59,4 +82,4 @@ Then run `/discover` — a successful response confirms read access to both Jira
 
 ## Endpoint Note
 
-The `/v1/sse` endpoint sunsets June 30, 2026. The `npx @atlassian/mcp-server` package handles this automatically.
+The hosted server now uses `/v1/mcp` (streamable HTTP) — the config above is current. The legacy `/v1/sse` endpoint is being phased out; if you have an older `.mcp.json` pointing at `/v1/sse`, update it to `/v1/mcp`. The local `npx @atlassian/mcp-server` package tracks the endpoint automatically.
