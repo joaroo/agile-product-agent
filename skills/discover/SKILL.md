@@ -1,9 +1,9 @@
 ---
-name: product-discovery
+name: discover
 description: Synthesize Jira and Confluence data to surface product opportunities, gaps, stale work, and user pain points. Use when the user runs /discover or asks about product direction, feature gaps, or what to build next.
 ---
 
-# product-discovery
+# discover
 
 Synthesizes Jira and Confluence data to surface product opportunities, gaps, and insights.
 
@@ -23,7 +23,7 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md` throughout. Default: Product Manager (insight-first, strategic framing).
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md` throughout. Default: Product Manager (insight-first, strategic framing).
 
 1. **Cross-product search** — Use `atlassian-cross-search` with the focus area (or broad query if none) to get a landscape view
 2. **Jira signal mining** — Use `atlassian-search-jira` with JQL:

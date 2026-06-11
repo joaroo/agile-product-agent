@@ -1,6 +1,6 @@
 # BDD Standards
 
-Reference for writing acceptance criteria and feature specifications in Gherkin-style BDD format. Used by the backlog-grooming, sprint-planning, and input-ingestion skills when drafting or reviewing issue ACs.
+Reference for writing acceptance criteria and feature specifications in Gherkin-style BDD format. Used by the groom, sprint-plan, and ingest skills when drafting or reviewing issue ACs.
 
 ---
 

@@ -5,7 +5,7 @@ argument-hint: [initiative or epic scope]
 
 # /handover
 
-Run the **dev-handover** skill.
+Run the **handover** skill.
 
 Initiative or scope: $ARGUMENTS
 (If empty, resolve the active initiative from its Lifecycle Index or ask.)
@@ -25,7 +25,7 @@ Examples:
 
 ## Skill
 
-See `skills/dev-handover/SKILL.md` for the full workflow. Runs standalone or as the Dev Handover stage of `/lifecycle`. Never creates Jira issues without confirmation.
+See `skills/handover/SKILL.md` for the full workflow. Runs standalone or as the Dev Handover stage of `/lifecycle`. Never creates Jira issues without confirmation.
 
 ## Required Config
 

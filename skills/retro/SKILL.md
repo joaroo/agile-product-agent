@@ -1,9 +1,9 @@
 ---
-name: retrospective
+name: retro
 description: Facilitate a sprint retrospective — pull sprint metrics, structure what went well / what to improve / action items, and write the retro page. Use when the user runs /retro or asks to run, prepare, or write up a sprint retrospective.
 ---
 
-# retrospective
+# retro
 
 Facilitates a sprint retrospective: synthesizes sprint outcomes and team input into a structured, ceremony-ready retrospective and writes the retro page to Confluence.
 
@@ -24,7 +24,7 @@ Invoked by `/retro`. Also triggered when the user asks to run a retrospective, p
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default persona: Product Manager (themes and outcomes first); Scrum Master gets the most ceremony-ready format.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md`. Default persona: Product Manager (themes and outcomes first); Scrum Master gets the most ceremony-ready format.
 
 1. **Identify sprint** — Use `atlassian-search-jira` to resolve the target sprint:
    `project = {KEY} AND sprint in closedSprints() ORDER BY sprint DESC` (take the most recent unless the user named one). If no closed sprint exists, state "no closed sprint found" and stop.

@@ -5,7 +5,7 @@ argument-hint: [ingest | discovery | ux | design | handover]
 
 # /lifecycle
 
-Run the **product-lifecycle** skill.
+Run the **lifecycle** skill.
 
 Stage to jump to: $ARGUMENTS
 (If empty, run or continue from the current stage recorded in the initiative's Lifecycle Index.)
@@ -34,7 +34,7 @@ Examples:
 
 ## Skill
 
-See `skills/product-lifecycle/SKILL.md` for the full orchestration workflow, and `standards/lifecycle.md` for the stage map, Carried Context header, and Lifecycle Index format.
+See `skills/lifecycle/SKILL.md` for the full orchestration workflow, and `standards/lifecycle.md` for the stage map, Carried Context header, and Lifecycle Index format.
 
 ## Required Config
 

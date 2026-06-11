@@ -5,7 +5,7 @@ argument-hint: [initiative or focus]
 
 # /design
 
-Run the **design-spec** skill.
+Run the **design** skill.
 
 Initiative or focus: $ARGUMENTS
 (If empty, resolve the active initiative from its Lifecycle Index or ask.)
@@ -25,7 +25,7 @@ Examples:
 
 ## Skill
 
-See `skills/design-spec/SKILL.md` for the full workflow. Runs standalone or as the Design stage of `/lifecycle`.
+See `skills/design/SKILL.md` for the full workflow. Runs standalone or as the Design stage of `/lifecycle`.
 
 ## Required Config
 

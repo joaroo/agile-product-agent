@@ -5,7 +5,7 @@ argument-hint: [sprint | date range]
 
 # /status
 
-Run the **status-report** skill.
+Run the **status** skill.
 
 Reporting period: $ARGUMENTS
 (If empty, report on the current sprint.)
@@ -27,7 +27,7 @@ Examples:
 
 ## Skill
 
-See `skills/status-report/SKILL.md` for full workflow.
+See `skills/status/SKILL.md` for full workflow.
 
 ## Required Config
 

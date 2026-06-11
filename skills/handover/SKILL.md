@@ -1,9 +1,9 @@
 ---
-name: dev-handover
+name: handover
 description: Turn discovery + UX + design artifacts into a dev-ready handover — epics/stories with BDD acceptance criteria, linked specs, technical context, and a Definition-of-Ready check — then create the Jira issues on confirmation. Use when the user runs /handover or reaches the Dev Handover stage of /lifecycle.
 ---
 
-# dev-handover
+# handover
 
 Packages everything upstream into engineering-ready work: a decomposition into epics and stories with BDD acceptance criteria, linked specs and research, explicit technical context and out-of-scope, and a Definition-of-Ready check. Produces a handover page and the Jira issues — only after explicit confirmation.
 
@@ -13,7 +13,7 @@ Style references: `standards/jira.md`, `standards/bdd.md`, `standards/lifecycle.
 
 ## Trigger Conditions
 
-Invoked by `/handover` and by `product-lifecycle` at the Dev Handover stage. Also triggered when the user asks to "make this dev-ready", "break this into stories with ACs", or "hand this to engineering".
+Invoked by `/handover` and by `lifecycle` at the Dev Handover stage. Also triggered when the user asks to "make this dev-ready", "break this into stories with ACs", or "hand this to engineering".
 
 ## Inputs
 
@@ -39,7 +39,7 @@ Invoked by `/handover` and by `product-lifecycle` at the Dev Handover stage. Als
 
 5. **Run the Definition-of-Ready check** — For each story/task, verify the DoR checklist in `standards/jira.md` (title convention, Context + ACs, epic link, story points, no `needs-design`/`needs-spec`, no open blockers). List any item that fails DoR — do not silently mark it ready. Apply `needs-design`/`needs-spec` labels where upstream artifacts are missing.
 
-6. **Assemble the handover artifact** — A Dev Handover page opening with the **Carried Context** header per `standards/lifecycle.md`, summarising the epic/story breakdown, the DoR status per item, and the full traceability (REQ-N → issue). Reuse the Design Handoff Checklist results from `design-spec` where present.
+6. **Assemble the handover artifact** — A Dev Handover page opening with the **Carried Context** header per `standards/lifecycle.md`, summarising the epic/story breakdown, the DoR status per item, and the full traceability (REQ-N → issue). Reuse the Design Handoff Checklist results from `design` where present.
 
 7. **Confirm, then write** — Present the proposed Jira issues (titles, types, ACs summary, DoR status) and the handover page. Write **only** on explicit confirmation, consistent with `/ingest` and `/sync`:
    - `atlassian-write-jira` for each confirmed issue (epic first, then stories/tasks/bugs/spikes, then sub-tasks — topological order per `standards/local-store.md`)

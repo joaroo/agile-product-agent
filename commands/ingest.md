@@ -5,7 +5,7 @@ argument-hint: [file path | email label]
 
 # /ingest
 
-Run the **input-ingestion** skill.
+Run the **ingest** skill.
 
 Source: $ARGUMENTS
 (If empty, parse content pasted directly into the conversation.)
@@ -27,7 +27,7 @@ Examples:
 
 ## Skill
 
-See `skills/input-ingestion/SKILL.md` for full workflow.
+See `skills/ingest/SKILL.md` for full workflow.
 
 ## Required Config
 

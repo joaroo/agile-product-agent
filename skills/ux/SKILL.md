@@ -1,9 +1,9 @@
 ---
-name: ux-synthesis
+name: ux
 description: Synthesise discovery + raw research/notes into UX research artifacts — personas, journey map, JTBD, findings, open questions — per standards/ux.md. Use when the user runs /ux, asks for UX synthesis, personas, or a journey map, or reaches the UX stage of /lifecycle.
 ---
 
-# ux-synthesis
+# ux
 
 Turns a Discovery Brief and ingested research/notes into structured UX research artifacts, surfacing user behaviours, evidence, and open questions rather than design solutions.
 
@@ -13,7 +13,7 @@ Style references: `standards/ux.md`, `standards/lifecycle.md`, `standards/conflu
 
 ## Trigger Conditions
 
-Invoked by `/ux` and by `product-lifecycle` at the UX stage. Also triggered when the user asks for a persona, journey map, JTBD, or research synthesis for an initiative.
+Invoked by `/ux` and by `lifecycle` at the UX stage. Also triggered when the user asks for a persona, journey map, JTBD, or research synthesis for an initiative.
 
 ## Inputs
 

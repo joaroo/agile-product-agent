@@ -1,9 +1,9 @@
 ---
-name: input-ingestion
+name: ingest
 description: Parse local docs, meeting notes, transcripts, or email into draft Jira issues and Confluence pages for review before any write. Use when the user runs /ingest, shares a doc or notes, or asks to create tickets from content.
 ---
 
-# input-ingestion
+# ingest
 
 Parses unstructured inputs — local docs, meeting notes, chat transcripts, or email — and extracts structured Jira issues and Confluence page content for human review before any write.
 
@@ -24,7 +24,7 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default persona: Product Manager. BA persona: flag ambiguity before creating tickets and route requirements content to `standards/requirements.md`. UX Researcher: route to `standards/ux.md`; Designer: route to `standards/design.md`.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md`. Default persona: Product Manager. BA persona: flag ambiguity before creating tickets and route requirements content to `standards/requirements.md`. UX Researcher: route to `standards/ux.md`; Designer: route to `standards/design.md`.
 
 1. **Ingest source**
    - `file`: Read the file from local filesystem (markdown, txt, pdf summary)

@@ -1,6 +1,6 @@
 # Content Design Standard
 
-Reference for UX writing and content design — voice and tone, microcopy, terminology, and content review. Used when the **UX Writer** persona is active, and by `design-spec` (the spec's Content section) and `document-update` (voice and tone guides) regardless of persona.
+Reference for UX writing and content design — voice and tone, microcopy, terminology, and content review. Used when the **UX Writer** persona is active, and by `design` (the spec's Content section) and `update-docs` (voice and tone guides) regardless of persona.
 
 Content design is an **output lens, not a lifecycle stage**: it threads through UX (voice derived from research), Design (microcopy in the spec), and Dev Handover (final strings in story ACs). There is no `/content` command — use `/as content` to make `/design`, `/ux`, `/update-docs`, and `/ingest` lead with content quality.
 

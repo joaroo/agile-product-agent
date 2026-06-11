@@ -43,4 +43,4 @@ Requested persona: $ARGUMENTS
 
 ## Skill
 
-See `skills/persona-switch/SKILL.md` for full behaviour.
+See `skills/as/SKILL.md` for full behaviour.

@@ -1,9 +1,9 @@
 ---
-name: persona-switch
+name: as
 description: Set, show, or clear the active output persona (PM, UX Researcher, Designer, Engineering Lead, Scrum Master, BA) for the session so other skills adapt tone, structure, and detail. Use when the user runs /as or asks to switch role/persona or change how outputs are framed.
 ---
 
-# persona-switch
+# as
 
 Sets, displays, or clears the active persona for the current session. All subsequent skill invocations adapt their output based on the active persona.
 

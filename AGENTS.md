@@ -7,7 +7,7 @@ Before any `atlassian-*` alias call, check whether `mcp__atlassian__*` tools are
 - **Live mode** — `mcp__atlassian__*` tools are present → resolve aliases to the Atlassian MCP tools as listed below. Normal operation.
 - **Local fallback mode** — `mcp__atlassian__*` tools are absent → resolve every `atlassian-*` alias to local file operations against `workspace/` per `standards/local-store.md`. No authentication required. The `email-read` alias has no local fallback; if email source is requested, state "email connector not configured" and stop.
 
-Mode is auto-detected; no manual toggle is needed. Skills call the same aliases regardless of mode. `/sync` bridges local → live: it requires live mode and pushes accumulated `workspace/` content up to Jira and Confluence (see `skills/local-sync/SKILL.md`).
+Mode is auto-detected; no manual toggle is needed. Skills call the same aliases regardless of mode. `/sync` bridges local → live: it requires live mode and pushes accumulated `workspace/` content up to Jira and Confluence (see `skills/sync/SKILL.md`).
 
 ## Tool Aliases
 
@@ -70,12 +70,12 @@ All reader access plus: `atlassian-write-jira` AND `atlassian-write-confluence`.
 Unlike `sync-runner`, these create new content (a handover page + decomposed Jira issues) rather than pushing existing `workspace/` content, and they work in **both** live and local fallback modes.
 Always present the proposed issues and page for review and require explicit user confirmation before any write — never create Jira issues automatically.
 
-Agents in this tier: `dev-handover-runner`
+Agents in this tier: `handover-runner`
 
 ### Orchestrator agents
-Coordinate the stage skills (`input-ingestion`, `product-discovery`, `ux-synthesis`, `design-spec`, `dev-handover`) and the per-initiative Lifecycle Index. The orchestrator owns **no writes of its own** beyond the Lifecycle Index page (via `atlassian-write-confluence`); all stage artifacts are written by the stage skills under their own tiers, and only at a confirmed stage gate. Never auto-advances past a gate.
+Coordinate the stage skills (`ingest`, `discover`, `ux`, `design`, `handover`) and the per-initiative Lifecycle Index. The orchestrator owns **no writes of its own** beyond the Lifecycle Index page (via `atlassian-write-confluence`); all stage artifacts are written by the stage skills under their own tiers, and only at a confirmed stage gate. Never auto-advances past a gate.
 
-Agents in this tier: `lifecycle-orchestrator` (see `skills/product-lifecycle/SKILL.md` and `standards/lifecycle.md`)
+Agents in this tier: `lifecycle-orchestrator` (see `skills/lifecycle/SKILL.md` and `standards/lifecycle.md`)
 
 ## Defaults
 
@@ -107,11 +107,11 @@ The end-to-end flow (`/lifecycle`) assigns each stage to its owning persona, whi
 
 | Stage | Owning persona | Stage skill |
 |-------|----------------|-------------|
-| Ingest | Business Analyst | `input-ingestion` |
-| Discovery | Product Manager | `product-discovery` |
-| UX | UX Researcher | `ux-synthesis` |
-| Design | Designer | `design-spec` |
-| Dev Handover | Engineering Lead | `dev-handover` |
+| Ingest | Business Analyst | `ingest` |
+| Discovery | Product Manager | `discover` |
+| UX | UX Researcher | `ux` |
+| Design | Designer | `design` |
+| Dev Handover | Engineering Lead | `handover` |
 
 A stage never abandons its discipline standard regardless of the active persona (e.g. `/design` always produces all states + accessibility per `standards/design.md`). See `standards/lifecycle.md`.
 

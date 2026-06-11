@@ -1,9 +1,9 @@
 ---
-name: design-spec
+name: design
 description: Turn UX synthesis + discovery into a Design Spec with all states (default/loading/empty/error/success), accessibility checklist, component docs, and handoff notes per standards/design.md. Use when the user runs /design, asks for a design spec or handoff, or reaches the Design stage of /lifecycle.
 ---
 
-# design-spec
+# design
 
 Translates a Discovery Brief and UX synthesis into a concrete Design Spec ready for engineering handoff — every state covered, accessibility built in, deliverables described as outcomes.
 
@@ -13,7 +13,7 @@ Style references: `standards/design.md`, `standards/content.md`, `standards/life
 
 ## Trigger Conditions
 
-Invoked by `/design` and by `product-lifecycle` at the Design stage. Also triggered when the user asks for a design spec, component doc, or handoff note for an initiative.
+Invoked by `/design` and by `lifecycle` at the Design stage. Also triggered when the user asks for a design spec, component doc, or handoff note for an initiative.
 
 ## Inputs
 

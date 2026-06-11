@@ -1,9 +1,9 @@
 ---
-name: document-update
+name: update-docs
 description: Create or update Confluence pages (specs, decision records, meeting notes, UX/design docs) using house templates. Use when the user runs /update-docs or asks to write or update a page, spec, ADR, or wiki entry.
 ---
 
-# document-update
+# update-docs
 
 Creates and updates Confluence pages with structured, well-formatted content.
 
@@ -23,7 +23,7 @@ Invoked by `/update-docs`. Also triggered when user asks to write, update, or cr
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md` to template selection and output framing. If unclear who the page is for and no persona is set, ask before drafting.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md` to template selection and output framing. If unclear who the page is for and no persona is set, ask before drafting.
 
 1. **Resolve target** — If updating: use `atlassian-search-confluence` to find the page by title. If creating: confirm parent page exists via `atlassian-read-confluence`
 2. **Read current state** (updates only) — Use `atlassian-read-confluence` to fetch existing content before any modification

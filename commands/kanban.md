@@ -5,7 +5,7 @@ argument-hint: [triage | move | wip-check | flow-review]
 
 # /kanban
 
-Run the **kanban-workflow** skill.
+Run the **kanban** skill.
 
 Action: $ARGUMENTS
 (If empty, ask which action to run.)
@@ -28,7 +28,7 @@ Examples:
 
 ## Skill
 
-See `skills/kanban-workflow/SKILL.md` for full workflow.
+See `skills/kanban/SKILL.md` for full workflow.
 
 ## Required Config
 

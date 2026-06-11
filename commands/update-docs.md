@@ -5,7 +5,7 @@ argument-hint: [page title or topic]
 
 # /update-docs
 
-Run the **document-update** skill.
+Run the **update-docs** skill.
 
 Arguments: $ARGUMENTS
 (If empty, ask which page to create or update.)
@@ -26,7 +26,7 @@ Examples:
 
 ## Skill
 
-See `skills/document-update/SKILL.md` for full workflow.
+See `skills/update-docs/SKILL.md` for full workflow.
 
 ## Required Config
 

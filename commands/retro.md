@@ -5,7 +5,7 @@ argument-hint: [sprint]
 
 # /retro
 
-Run the **retrospective** skill.
+Run the **retro** skill.
 
 Sprint: $ARGUMENTS
 (If empty, run the retro for the last closed sprint.)
@@ -25,7 +25,7 @@ Examples:
 
 ## Skill
 
-See `skills/retrospective/SKILL.md` for full workflow.
+See `skills/retro/SKILL.md` for full workflow.
 
 ## Required Config
 

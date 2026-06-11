@@ -1,6 +1,6 @@
 # Design Standards
 
-Reference for documenting design work — component specs, handoff, design review, and design system governance. Used by document-update and backlog-grooming skills when creating design documentation or evaluating design task quality.
+Reference for documenting design work — component specs, handoff, design review, and design system governance. Used by update-docs and groom skills when creating design documentation or evaluating design task quality.
 
 ---
 

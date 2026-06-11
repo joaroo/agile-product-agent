@@ -1,9 +1,9 @@
 ---
-name: status-report
+name: status
 description: Generate project health reports with burndown, velocity trend, and risk signals from Jira. Use when the user runs /status or asks for sprint progress, project health, velocity, or burndown.
 ---
 
-# status-report
+# status
 
 Generates project health summaries with burndown data, velocity trends, and risk signals from Jira.
 
@@ -23,7 +23,7 @@ Invoked by `/status`. Also triggered when user asks for project health, sprint p
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default persona: Product Manager (executive summary first; trends and risk signals above raw metrics).
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md`. Default persona: Product Manager (executive summary first; trends and risk signals above raw metrics).
 
 1. **Active sprint** — Use `atlassian-search-jira`:
    `project = {KEY} AND sprint in openSprints()`

@@ -5,7 +5,7 @@ argument-hint: [epic | label | mode]
 
 # /groom
 
-Run the **backlog-grooming** skill.
+Run the **groom** skill.
 
 Arguments: $ARGUMENTS
 (If empty, run a full grooming pass on the default project.)
@@ -29,7 +29,7 @@ Examples:
 
 ## Skill
 
-See `skills/backlog-grooming/SKILL.md` for full workflow.
+See `skills/groom/SKILL.md` for full workflow.
 
 ## Required Config
 

@@ -5,7 +5,7 @@ argument-hint: [initiative or focus]
 
 # /ux
 
-Run the **ux-synthesis** skill.
+Run the **ux** skill.
 
 Initiative or focus: $ARGUMENTS
 (If empty, resolve the active initiative from its Lifecycle Index or ask.)
@@ -25,7 +25,7 @@ Examples:
 
 ## Skill
 
-See `skills/ux-synthesis/SKILL.md` for the full workflow. Runs standalone or as the UX stage of `/lifecycle`.
+See `skills/ux/SKILL.md` for the full workflow. Runs standalone or as the UX stage of `/lifecycle`.
 
 ## Required Config
 

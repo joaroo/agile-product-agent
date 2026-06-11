@@ -54,6 +54,6 @@ To confirm the fallback works:
 
 Add `.mcp.json` (copy from `.mcp.json.example`) and restart the Claude Code session. The auto-detect will find `mcp__atlassian__*` tools and switch back to live mode. `workspace/` files are unaffected and remain as a local record.
 
-Once live mode is active, run `/sync` to push the accumulated `workspace/` content up to Jira and Confluence. The sync is idempotent (safe to re-run), always dry-runs first, and requires explicit confirmation before any write. Real Jira keys and Confluence page ids are written back into the local file frontmatter so subsequent re-runs skip already-synced items. See `skills/local-sync/SKILL.md` for full details.
+Once live mode is active, run `/sync` to push the accumulated `workspace/` content up to Jira and Confluence. The sync is idempotent (safe to re-run), always dry-runs first, and requires explicit confirmation before any write. Real Jira keys and Confluence page ids are written back into the local file frontmatter so subsequent re-runs skip already-synced items. See `skills/sync/SKILL.md` for full details.
 
 See `connectors/atlassian/CONNECTOR.md` for Atlassian setup details.

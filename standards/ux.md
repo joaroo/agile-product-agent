@@ -1,6 +1,6 @@
 # UX Standards
 
-Reference for structuring and documenting UX research artifacts. Used by product-discovery and input-ingestion skills when surfacing research signals or parsing research docs into Jira/Confluence.
+Reference for structuring and documenting UX research artifacts. Used by discover and ingest skills when surfacing research signals or parsing research docs into Jira/Confluence.
 
 ---
 

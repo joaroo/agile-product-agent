@@ -1,6 +1,6 @@
 # Product Lifecycle Standard
 
-Canonical reference for the end-to-end product flow: **Ingest → Discovery → UX → Design → Dev Handover**. Used by the `product-lifecycle` orchestrator and the per-stage skills (`input-ingestion`, `product-discovery`, `ux-synthesis`, `design-spec`, `dev-handover`).
+Canonical reference for the end-to-end product flow: **Ingest → Discovery → UX → Design → Dev Handover**. Used by the `lifecycle` orchestrator and the per-stage skills (`ingest`, `discover`, `ux`, `design`, `handover`).
 
 Each stage is owned by a persona, produces **one canonical artifact** in that persona's format (per the discipline standard), and **gates for human review** before the next stage begins. Every artifact opens with a **Carried Context** header so the next persona inherits the thread, and a per-initiative **Lifecycle Index** page threads the whole chain.
 
@@ -45,7 +45,7 @@ Rules:
 
 ## Lifecycle Index page
 
-One per initiative. The single source of truth for where the initiative is in the flow and how artifacts trace to each other. Created by the `product-lifecycle` orchestrator at the start of a run and updated after every stage.
+One per initiative. The single source of truth for where the initiative is in the flow and how artifacts trace to each other. Created by the `lifecycle` orchestrator at the start of a run and updated after every stage.
 
 **Title:** `[Initiative] Lifecycle` · **Location:** `Discovery/[Initiative] Lifecycle` · **Naming:** follows `confluence.md` (sentence case, no trailing punctuation).
 
@@ -97,4 +97,4 @@ Source/BRD → Requirement IDs → Discovery → UX → Design → Epics/Stories
 
 ## Persona ownership
 
-Stage skills adopt their owning persona as the **default lens** even when no persona is set via `/as`. An explicitly-set persona still takes precedence for cross-cutting framing, but a stage never abandons its discipline standard (e.g. running `/design` always produces all states + accessibility per `design.md`, regardless of active persona). See `standards/personas.md` and `skills/persona-switch/SKILL.md`.
+Stage skills adopt their owning persona as the **default lens** even when no persona is set via `/as`. An explicitly-set persona still takes precedence for cross-cutting framing, but a stage never abandons its discipline standard (e.g. running `/design` always produces all states + accessibility per `design.md`, regardless of active persona). See `standards/personas.md` and `skills/as/SKILL.md`.

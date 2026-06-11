@@ -1,9 +1,9 @@
 ---
-name: product-lifecycle
+name: lifecycle
 description: Orchestrate the end-to-end product flow — Ingest → Discovery → UX → Design → Dev Handover — as a gated, persona-owned pipeline that produces one traceable artifact per stage and a Lifecycle Index. Use when the user runs /lifecycle, asks to take an idea/BRD/notes from input to dev-ready, or to run the full product flow.
 ---
 
-# product-lifecycle
+# lifecycle
 
 Drives an initiative through the five product stages, adopting the owning persona at each stage, delegating to the stage skill, threading context via a Lifecycle Index, and gating for human review between stages.
 
@@ -19,18 +19,18 @@ Invoked by `/lifecycle`. Also triggered when the user asks to "take this from no
 
 - Optional stage to jump to: `ingest | discovery | ux | design | handover` (empty = run/continue from the current stage recorded in the Lifecycle Index)
 - Initiative name (from argument, inferred from source, or prompted)
-- Source material for the Ingest stage: file path(s), pasted content, or email (per `input-ingestion`)
+- Source material for the Ingest stage: file path(s), pasted content, or email (per `ingest`)
 - Jira project key and Confluence space (from `AGENTS.md` or user-provided)
 
 ## Stage → skill delegation
 
 | Stage | Persona | Skill | Standard |
 |-------|---------|-------|----------|
-| Ingest | Business Analyst | `input-ingestion` | `requirements.md` |
-| Discovery | Product Manager | `product-discovery` → write Discovery Brief via `document-update` | `confluence.md` (Spec/PRD) |
-| UX | UX Researcher | `ux-synthesis` | `ux.md` |
-| Design | Designer | `design-spec` | `design.md` |
-| Dev Handover | Engineering Lead | `dev-handover` | `jira.md`, `bdd.md` |
+| Ingest | Business Analyst | `ingest` | `requirements.md` |
+| Discovery | Product Manager | `discover` → write Discovery Brief via `update-docs` | `confluence.md` (Spec/PRD) |
+| UX | UX Researcher | `ux` | `ux.md` |
+| Design | Designer | `design` | `design.md` |
+| Dev Handover | Engineering Lead | `handover` | `jira.md`, `bdd.md` |
 
 ## Workflow
 
@@ -46,7 +46,7 @@ Invoked by `/lifecycle`. Also triggered when the user asks to "take this from no
    a. Adopt the stage's owning persona as the lens.
    b. Delegate to the stage skill (see table). Pass the initiative name, the Lifecycle Index link, and links to all completed upstream artifacts so the skill can populate its **Carried Context** header.
    c. Ensure the produced artifact opens with a populated Carried Context block per `standards/lifecycle.md` (Problem/goal copied from the Discovery Brief once it exists; inherited open questions carried forward).
-   d. For the Discovery stage: run `product-discovery` to synthesise, then render the result as a Discovery Brief using the Spec/PRD template in `standards/confluence.md` (Problem, Goals, Non-Goals, User Stories, Solution Overview, Open Questions).
+   d. For the Discovery stage: run `discover` to synthesise, then render the result as a Discovery Brief using the Spec/PRD template in `standards/confluence.md` (Problem, Goals, Non-Goals, User Stories, Solution Overview, Open Questions).
 
 5. **Gate** — Present the drafted artifact. Offer exactly:
    - `proceed` — write the artifact (on confirmation), update the Lifecycle Index stage row + traceability, advance to the next stage.

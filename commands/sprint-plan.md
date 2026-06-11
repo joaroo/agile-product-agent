@@ -5,7 +5,7 @@ argument-hint: [focus area]
 
 # /sprint-plan
 
-Run the **sprint-planning** skill.
+Run the **sprint-plan** skill.
 
 Arguments: $ARGUMENTS
 (If empty, auto-detect velocity and plan the next sprint.)
@@ -26,7 +26,7 @@ Examples:
 
 ## Skill
 
-See `skills/sprint-planning/SKILL.md` for full workflow.
+See `skills/sprint-plan/SKILL.md` for full workflow.
 
 ## Required Config
 

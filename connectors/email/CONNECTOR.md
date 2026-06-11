@@ -14,7 +14,7 @@ The `email-read` alias in AGENTS.md resolves to this value at runtime.
 
 ## Usage in Skills
 
-The `input-ingestion` skill uses the `email-read` alias only. It:
+The `ingest` skill uses the `email-read` alias only. It:
 1. Fetches emails by label/thread/date using whatever tool `EMAIL_MCP_TOOL` points to
 2. Extracts action items and decisions
 3. Presents structured output for human review before any Jira/Confluence writes

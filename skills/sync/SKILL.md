@@ -1,9 +1,9 @@
 ---
-name: local-sync
+name: sync
 description: Push the local workspace/ fallback up to Jira and Confluence once the Atlassian MCP is connected. Use when the user runs /sync or asks to push, upload, or sync local issues and pages to Jira/Confluence.
 ---
 
-# local-sync
+# sync
 
 Reconciles the local `workspace/` fallback with live Jira and Confluence: classifies each item as create or update, computes topological order, dry-runs the plan for confirmation, pushes on approval, writes real IDs back into local frontmatter, and emits a reconciliation report.
 

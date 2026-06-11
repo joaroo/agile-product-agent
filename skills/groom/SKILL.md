@@ -1,9 +1,9 @@
 ---
-name: backlog-grooming
+name: groom
 description: Query, prioritize, and improve Jira backlog quality: flag missing ACs, vague titles, oversized or stale stories, and draft BDD acceptance criteria. Use when the user runs /groom or asks to refine, clean, or prioritize the backlog.
 ---
 
-# backlog-grooming
+# groom
 
 Queries, prioritizes, and improves the quality of the Jira backlog. Suggests story breakdowns and acceptance criteria.
 
@@ -23,7 +23,7 @@ Invoked by `/groom`. Also triggered when user asks to refine, clean, or prioriti
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/persona-switch/SKILL.md`. Default: Product Manager (strategic misalignments and priority flagged first).
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md`. Default: Product Manager (strategic misalignments and priority flagged first).
 
 1. **Fetch backlog** — Use `atlassian-search-jira`:
    `project = {KEY} AND status in (Backlog, "To Do") ORDER BY priority DESC, rank ASC`

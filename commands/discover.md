@@ -5,7 +5,7 @@ argument-hint: [focus area]
 
 # /discover
 
-Run the **product-discovery** skill.
+Run the **discover** skill.
 
 Focus area: $ARGUMENTS
 (If empty, run broad discovery across the default project.)
@@ -26,7 +26,7 @@ Examples:
 
 ## Skill
 
-See `skills/product-discovery/SKILL.md` for full workflow.
+See `skills/discover/SKILL.md` for full workflow.
 
 ## Required Config
 

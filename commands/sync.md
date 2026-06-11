@@ -5,7 +5,7 @@ argument-hint: [jira | confluence | project key]
 
 # /sync
 
-Run the **local-sync** skill.
+Run the **sync** skill.
 
 Scope: $ARGUMENTS
 (If empty, sync everything in `workspace/` — issues, sprints, and pages.)
@@ -29,7 +29,7 @@ Examples:
 
 ## Skill
 
-See `skills/local-sync/SKILL.md` for full workflow.
+See `skills/sync/SKILL.md` for full workflow.
 
 ## Required Config
 

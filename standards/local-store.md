@@ -173,9 +173,9 @@ Natural language cross-product search → Grep across both `workspace/jira/` (is
 
 ---
 
-## Velocity and Burndown (status-report)
+## Velocity and Burndown (status)
 
-In local fallback mode, velocity and burndown for the `status-report` skill are computed as follows:
+In local fallback mode, velocity and burndown for the `status` skill are computed as follows:
 
 - **Velocity (per sprint)**: sum of `story_points` of issues with `status: Done` whose `sprint:` field matches a sprint with `state: closed`.
 - **Burndown (current sprint)**: sum `story_points` of all issues in the open sprint; subtract points of issues with `status: Done`.
@@ -185,7 +185,7 @@ In local fallback mode, velocity and burndown for the `status-report` skill are 
 
 ## Sync-up (local → Atlassian)
 
-Once the Atlassian MCP is connected, run `/sync` to push `workspace/` content up to real Jira and Confluence. The sync is **one-way** (local is source of truth) and **idempotent** (re-runs update, never duplicate). See `skills/local-sync/SKILL.md` for the full workflow.
+Once the Atlassian MCP is connected, run `/sync` to push `workspace/` content up to real Jira and Confluence. The sync is **one-way** (local is source of truth) and **idempotent** (re-runs update, never duplicate). See `skills/sync/SKILL.md` for the full workflow.
 
 ### Sync-back frontmatter fields
 
