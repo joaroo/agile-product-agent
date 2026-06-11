@@ -67,13 +67,7 @@ ATLASSIAN_BASE_URL=    # e.g. https://your-org.atlassian.net
 
 ## Project Defaults
 
-Fill in after OAuth setup — these are referenced in AGENTS.md and used as fallbacks in skills:
-
-```
-DEFAULT_JIRA_PROJECT_KEY=       # e.g. MYPROJ
-DEFAULT_CONFLUENCE_SPACE_ID=    # space key, e.g. TEAM
-DEFAULT_JIRA_BOARD_ID=          # numeric board ID (found in board URL)
-```
+Project defaults (`DEFAULT_JIRA_PROJECT_KEY`, `DEFAULT_CONFLUENCE_SPACE_ID`, `DEFAULT_JIRA_BOARD_ID`) live in a `.env` file in your project root, not here. Copy `.env.example` to `.env` and fill it in after OAuth setup. See the Defaults table in `AGENTS.md` for what each key controls.
 
 ## Validation
 

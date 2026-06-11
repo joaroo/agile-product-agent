@@ -20,7 +20,7 @@ Invoked by `/ux` and by `lifecycle` at the UX stage. Also triggered when the use
 
 - Initiative name and Lifecycle Index link (from `/lifecycle`, or resolved/created when run standalone)
 - Upstream: Discovery Brief (problem, goals) + any ingested research, interview notes, usability findings
-- Confluence space (from `AGENTS.md` or user-provided)
+- Confluence space (from `.env` or user-provided)
 
 ## Workflow
 
@@ -106,5 +106,5 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- `DEFAULT_CONFLUENCE_SPACE_ID` in `.env`
 - Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

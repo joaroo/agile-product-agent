@@ -18,7 +18,7 @@ Invoked by `/kanban`. Also triggered when user asks to triage new issues, move c
 
 ## Inputs
 
-- Jira project key (from AGENTS.md or user-provided)
+- Jira project key (from `.env` or user-provided)
 - Action: `triage` | `move` | `wip-check` | `flow-review`
 - For `move`: issue key + target status (user-provided)
 
@@ -83,5 +83,5 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
 - Atlassian OAuth active with Jira write permission (for moves) — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

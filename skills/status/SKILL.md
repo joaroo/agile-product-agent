@@ -18,8 +18,8 @@ Invoked by `/status`. Also triggered when user asks for project health, sprint p
 
 ## Inputs
 
-- Jira project key (from AGENTS.md or user-provided)
-- Board ID (from AGENTS.md DEFAULT_JIRA_BOARD_ID or user-provided)
+- Jira project key (from `.env` or user-provided)
+- Board ID (from `.env` (DEFAULT_JIRA_BOARD_ID) or user-provided)
 - Reporting period: current sprint (default), last N sprints, or date range
 
 ## Workflow
@@ -101,6 +101,6 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- `DEFAULT_JIRA_BOARD_ID` in AGENTS.md (for burndown data)
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
+- `DEFAULT_JIRA_BOARD_ID` in `.env` (for burndown data)
 - Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

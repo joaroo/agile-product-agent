@@ -10,7 +10,7 @@ EMAIL_MCP_TOOL=mcp__gmail__search_emails   # Gmail example
 # EMAIL_MCP_TOOL=mcp__outlook__search      # Outlook example
 ```
 
-The `email-read` alias in AGENTS.md resolves to this value at runtime.
+The `email-read` alias (declared in `AGENTS.md`) resolves to this `.env` value at runtime.
 
 ## Usage in Skills
 

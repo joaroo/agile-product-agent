@@ -105,8 +105,8 @@ By default everything runs offline (see **Local fallback** below). To work again
 
    Both expose the same tools — see `connectors/atlassian/CONNECTOR.md` for the exact configs.
 2. Run `claude` — it prompts for Atlassian OAuth on first tool use
-3. Fill in your Jira project keys and Confluence space IDs in `connectors/atlassian/CONNECTOR.md`
-4. (Optional) Set `EMAIL_MCP_TOOL` in `.env` to enable `/ingest` from email
+
+Then set your project defaults (used in **both** live and local mode): copy `.env.example` to `.env` in your project root and fill in `DEFAULT_JIRA_PROJECT_KEY`, `DEFAULT_CONFLUENCE_SPACE_ID`, and — optionally — `DEFAULT_JIRA_BOARD_ID` (kanban/burndown) and `EMAIL_MCP_TOOL` (`/ingest` from email). `.env` lives in your project, not the plugin, so it's per-project and survives plugin updates. If you skip it, the agent prompts once and falls back to `PROD` / `TEAM`.
 
 ### Local fallback
 

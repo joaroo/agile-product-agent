@@ -18,7 +18,7 @@ Invoked by `/sprint-plan`. Also triggered when user mentions upcoming sprint, sp
 
 ## Inputs
 
-- Jira project key (from AGENTS.md or user-provided)
+- Jira project key (from `.env` or user-provided)
 - Sprint duration (default: 2 weeks)
 - Team capacity in story points or days (user-provided or estimated from last sprint velocity)
 - Optional: themes or focus areas to prioritize
@@ -91,5 +91,5 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
 - Atlassian OAuth active with Jira write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

@@ -18,7 +18,7 @@ Invoked by `/groom`. Also triggered when user asks to refine, clean, or prioriti
 
 ## Inputs
 
-- Jira project key (from AGENTS.md or user-provided)
+- Jira project key (from `.env` or user-provided)
 - Optional: specific epic or label to scope grooming
 - Optional: grooming mode — `triage` (quick pass), `deepen` (add ACs), `prune` (remove stale)
 
@@ -99,5 +99,5 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
 - Atlassian OAuth active with Jira write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

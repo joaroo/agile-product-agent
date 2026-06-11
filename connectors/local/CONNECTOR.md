@@ -34,7 +34,7 @@ Full file format specifications — frontmatter schemas, slug derivation, key al
 
 ## Defaults in Local Mode
 
-`DEFAULT_JIRA_PROJECT_KEY` and `DEFAULT_CONFLUENCE_SPACE_ID` (from `AGENTS.md`) name the `workspace/jira/` and `workspace/confluence/` folders respectively. If unset, the agent prompts once and defaults to `PROD` / `TEAM`.
+`DEFAULT_JIRA_PROJECT_KEY` and `DEFAULT_CONFLUENCE_SPACE_ID` (from `.env`) name the `workspace/jira/` and `workspace/confluence/` folders respectively. If unset, the agent prompts once and defaults to `PROD` / `TEAM`.
 
 ## Validation
 

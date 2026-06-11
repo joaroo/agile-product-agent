@@ -19,7 +19,7 @@ Invoked by `/update-docs`. Also triggered when user asks to write, update, or cr
 ## Inputs
 
 - Target: existing page title/ID to update, OR new page title + parent page
-- Confluence space ID (from AGENTS.md or user-provided)
+- Confluence space ID (from `.env` or user-provided)
 - Content source: user prompt, local file path, or paste
 
 ## Workflow
@@ -75,5 +75,5 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- `DEFAULT_CONFLUENCE_SPACE_ID` in `.env`
 - Atlassian OAuth active with Confluence write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

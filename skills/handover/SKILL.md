@@ -20,7 +20,7 @@ Invoked by `/handover` and by `lifecycle` at the Dev Handover stage. Also trigge
 
 - Initiative name and Lifecycle Index link (from `/lifecycle`, or resolved/created when run standalone)
 - Upstream: Discovery Brief, UX Synthesis, Design Spec (whichever exist)
-- Jira project key and Confluence space (from `AGENTS.md` or user-provided)
+- Jira project key and Confluence space (from `.env` or user-provided)
 
 ## Workflow
 
@@ -114,6 +114,6 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
+- `DEFAULT_CONFLUENCE_SPACE_ID` in `.env`
 - Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

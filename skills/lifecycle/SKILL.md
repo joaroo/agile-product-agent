@@ -21,7 +21,7 @@ Invoked by `/lifecycle`. Also triggered when the user asks to "take this from no
 - Optional stage to jump to: `ingest | discovery | ux | design | handover` (empty = run/continue from the current stage recorded in the Lifecycle Index)
 - Initiative name (from argument, inferred from source, or prompted)
 - Source material for the Ingest stage: file path(s), pasted content, or email (per `ingest`)
-- Jira project key and Confluence space (from `AGENTS.md` or user-provided)
+- Jira project key and Confluence space (from `.env` or user-provided)
 
 ## Stage → skill delegation
 
@@ -106,6 +106,6 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
+- `DEFAULT_CONFLUENCE_SPACE_ID` in `.env`
 - Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

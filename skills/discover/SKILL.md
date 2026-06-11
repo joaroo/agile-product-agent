@@ -18,8 +18,8 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
 
 ## Inputs
 
-- Jira project key (from AGENTS.md DEFAULT_JIRA_PROJECT_KEY or user-provided)
-- Confluence space ID (from AGENTS.md DEFAULT_CONFLUENCE_SPACE_ID or user-provided)
+- Jira project key (from `.env` (DEFAULT_JIRA_PROJECT_KEY) or user-provided)
+- Confluence space ID (from `.env` (DEFAULT_CONFLUENCE_SPACE_ID) or user-provided)
 - Optional: focus area or theme (e.g. "onboarding", "billing", "performance")
 
 ## Workflow
@@ -84,6 +84,6 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
+- `DEFAULT_CONFLUENCE_SPACE_ID` in `.env`
 - Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

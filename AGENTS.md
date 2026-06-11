@@ -79,13 +79,16 @@ Agents in this tier: `lifecycle-orchestrator` (see `skills/lifecycle/SKILL.md` a
 
 ## Defaults
 
-Fill in after Atlassian OAuth setup (see `connectors/atlassian/CONNECTOR.md`). In local fallback mode, `DEFAULT_JIRA_PROJECT_KEY` and `DEFAULT_CONFLUENCE_SPACE_ID` name the `workspace/jira/` and `workspace/confluence/` subdirectories respectively. If unset in local mode, prompt the user once and default to `PROD` / `TEAM`.
+Project defaults live in a `.env` file in the working directory (the project where the plugin runs) — **not** in this file — so they stay per-project and survive plugin updates. Users copy `.env.example` (shipped with the plugin) to their project root as `.env` and fill it in.
 
-```
-DEFAULT_JIRA_PROJECT_KEY=       # e.g. MYPROJ — also names workspace/jira/ subfolder in local mode
-DEFAULT_CONFLUENCE_SPACE_ID=    # e.g. space key TEAM — also names workspace/confluence/ subfolder in local mode
-DEFAULT_JIRA_BOARD_ID=          # numeric board ID for kanban/burndown (live mode only)
-```
+Before using any default, read `.env` from the working directory. If the file or a given key is missing, prompt the user once; in local fallback mode, default `DEFAULT_JIRA_PROJECT_KEY` / `DEFAULT_CONFLUENCE_SPACE_ID` to `PROD` / `TEAM` (which also name the `workspace/jira/` and `workspace/confluence/` subdirectories).
+
+| Key | Purpose |
+|-----|---------|
+| `DEFAULT_JIRA_PROJECT_KEY` | Default Jira project; also names the `workspace/jira/` subfolder in local mode |
+| `DEFAULT_CONFLUENCE_SPACE_ID` | Default Confluence space; also names the `workspace/confluence/` subfolder in local mode |
+| `DEFAULT_JIRA_BOARD_ID` | Numeric board ID for kanban / burndown (live mode only) |
+| `EMAIL_MCP_TOOL` | MCP tool name backing the `email-read` alias (no local fallback) |
 
 ## Persona Awareness
 

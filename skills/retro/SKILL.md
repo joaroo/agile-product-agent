@@ -18,9 +18,9 @@ Invoked by `/retro`. Also triggered when the user asks to run a retrospective, p
 
 ## Inputs
 
-- Jira project key (from AGENTS.md or user-provided)
+- Jira project key (from `.env` or user-provided)
 - Target sprint (default: last closed sprint; or user-named sprint)
-- Confluence space ID for the retro page (from AGENTS.md or user-provided)
+- Confluence space ID for the retro page (from `.env` or user-provided)
 - Optional: team-provided notes, observations, or votes to fold in
 
 ## Workflow
@@ -93,6 +93,6 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md (for the retro page)
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
+- `DEFAULT_CONFLUENCE_SPACE_ID` in `.env` (for the retro page)
 - Atlassian OAuth active with Confluence write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

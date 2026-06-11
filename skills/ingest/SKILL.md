@@ -21,7 +21,7 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
 - Source type: `file` (local path) | `paste` (content in conversation) | `email` (via email-read alias)
 - Source content or path
 - Target: `jira` | `confluence` | `both`
-- Jira project key and Confluence space (from AGENTS.md or user-provided)
+- Jira project key and Confluence space (from `.env` or user-provided)
 
 ## Workflow
 
@@ -101,7 +101,7 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
-- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md (for page creation)
+- `DEFAULT_JIRA_PROJECT_KEY` in `.env`
+- `DEFAULT_CONFLUENCE_SPACE_ID` in `.env` (for page creation)
 - Atlassian OAuth active with write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)
 - `EMAIL_MCP_TOOL` in `.env` (only required for email source; email has no local fallback)

@@ -17,7 +17,7 @@ Invoked by `/sync`. Also triggered when the user says "push local work up", "upl
 ## Inputs
 
 - Optional scope: `jira` | `confluence` | a specific project key or space key (default: everything in `workspace/`)
-- Jira project key and Confluence space (from AGENTS.md defaults or user-provided)
+- Jira project key and Confluence space (from `.env` or user-provided)
 
 ## Workflow
 
@@ -35,7 +35,7 @@ Invoked by `/sync`. Also triggered when the user says "push local work up", "upl
    - **update** — has a recorded real ID, AND `updated:` > `synced_at:` (locally modified since last sync)
    - **skip** — has a recorded real ID, AND `updated:` ≤ `synced_at:` (no local changes)
 
-2. **Resolve targets** — Map local project key (e.g. `PROD`) to the real Jira project key and local space key (e.g. `TEAM`) to the real Confluence space key using AGENTS.md defaults. If the mapping is ambiguous or unset, ask the user once before proceeding.
+2. **Resolve targets** — Map local project key (e.g. `PROD`) to the real Jira project key and local space key (e.g. `TEAM`) to the real Confluence space key using `.env` defaults. If the mapping is ambiguous or unset, ask the user once before proceeding.
 
 3. **Topological order** — Sort items to ensure parent references resolve before children:
    - **Jira**: Epics → Stories / Tasks / Bugs / Spikes → Sub-tasks; sprints are created before issues are assigned to them
@@ -143,5 +143,5 @@ Examples:
 
 ## Required Config
 
-- `DEFAULT_JIRA_PROJECT_KEY` and `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md (used to map local keys to real project/space keys)
+- `DEFAULT_JIRA_PROJECT_KEY` and `DEFAULT_CONFLUENCE_SPACE_ID` in `.env` (used to map local keys to real project/space keys)
 - **A live Atlassian connection is required** — this command does nothing useful in local-only mode. Add `.mcp.json` (copy from `.mcp.json.example`) and restart the session to enable live mode. See `connectors/atlassian/CONNECTOR.md` and `connectors/local/CONNECTOR.md`.
