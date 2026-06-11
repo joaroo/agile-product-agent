@@ -12,6 +12,8 @@ Derived from: product-manager + project-coordinator (awesome-agnostic-skills biz
 
 Style references: `standards/lifecycle.md`, `standards/confluence.md`, `standards/local-store.md`. Stage standards: `standards/requirements.md`, `standards/ux.md`, `standards/design.md`, `standards/jira.md`, `standards/bdd.md`.
 
+> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+
 ## Trigger Conditions
 
 Invoked by `/lifecycle`. Also triggered when the user asks to "take this from notes/BRD to tickets", "run the whole product flow", or "go from discovery through to dev handover".

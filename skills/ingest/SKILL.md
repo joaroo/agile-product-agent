@@ -12,6 +12,8 @@ Derived from: business-analyst (requirements extraction) + technical-writer (awe
 
 Style references: `standards/jira.md`, `standards/bdd.md`, `standards/confluence.md`, `standards/ux.md`, `standards/design.md`, `standards/requirements.md`, `standards/local-store.md`
 
+> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+
 ## Trigger Conditions
 
 Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a doc path, or asks to "create tickets from this".

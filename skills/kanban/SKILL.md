@@ -12,6 +12,8 @@ Derived from: scrum-master (kanban mode) + business-analyst (awesome-agnostic-sk
 
 Style references: `standards/jira.md`, `standards/local-store.md`
 
+> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+
 ## Trigger Conditions
 
 Invoked by `/kanban`. Also triggered when user asks to triage new issues, move cards, check WIP limits, or manage flow.

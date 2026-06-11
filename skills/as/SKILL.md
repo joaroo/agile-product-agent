@@ -8,6 +8,8 @@ argument-hint: [pm | ux | design | dev | scrum | ba | reset]
 
 Sets, displays, or clears the active persona for the current session. All subsequent skill invocations adapt their output based on the active persona.
 
+> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+
 ## Trigger Conditions
 
 Invoked by `/as`. Also responds to natural language like "switch to PM mode" or "act as a scrum master".

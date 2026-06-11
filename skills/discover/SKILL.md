@@ -12,6 +12,8 @@ Derived from: product-manager + ux-researcher + knowledge-synthesizer (awesome-a
 
 Style references: `standards/ux.md`, `standards/local-store.md`
 
+> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+
 ## Trigger Conditions
 
 Invoked by `/discover`. Also triggered when the user asks about product direction, feature gaps, user pain points, or competitive positioning relative to existing Jira/Confluence content.
