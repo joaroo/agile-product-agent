@@ -1,6 +1,7 @@
 ---
 name: sprint-plan
 description: Plan the next sprint from the Jira backlog: compute velocity, match capacity, and propose scope plus a user-value sprint goal. Use when the user runs /sprint-plan or mentions sprint kickoff or planning the next iteration.
+argument-hint: [focus area]
 ---
 
 # sprint-plan
@@ -75,3 +76,20 @@ Invoked by `/sprint-plan`. Also triggered when user mentions upcoming sprint, sp
 - Never move items to sprint without explicit user confirmation
 - If acceptance criteria missing on >50% of items, flag before proceeding — ACs must follow `standards/bdd.md` to count as present
 - Sprint planning Confluence page follows meeting notes template in `standards/confluence.md`
+
+## Usage
+
+```
+/sprint-plan
+/sprint-plan [capacity] [theme]
+```
+
+Examples:
+- `/sprint-plan` — auto-detect velocity, plan next sprint
+- `/sprint-plan 40 points` — plan with explicit capacity
+- `/sprint-plan 2 weeks focus: checkout flow` — plan with theme filter
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- Atlassian OAuth active with Jira write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

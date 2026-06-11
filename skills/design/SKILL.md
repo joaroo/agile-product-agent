@@ -1,6 +1,7 @@
 ---
 name: design
 description: Turn UX synthesis + discovery into a Design Spec with all states (default/loading/empty/error/success), accessibility checklist, component docs, and handoff notes per standards/design.md. Use when the user runs /design, asks for a design spec or handoff, or reaches the Design stage of /lifecycle.
+argument-hint: [initiative or focus]
 ---
 
 # design
@@ -91,3 +92,19 @@ Invoked by `/design` and by `lifecycle` at the Design stage. Also triggered when
 - Uses `design.md` templates exactly; design spec is not confused with UX research artifacts
 - Handoff Checklist run before marking the spec ready for handover
 - NEVER write to Confluence without confirmation; no fabricated page IDs
+
+## Usage
+
+```
+/design
+/design [initiative or focus]
+```
+
+Examples:
+- `/design checkout` — design spec for the checkout initiative
+- `/design` — spec for the current lifecycle initiative
+
+## Required Config
+
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

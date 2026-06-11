@@ -1,6 +1,7 @@
 ---
 name: sync
 description: Push the local workspace/ fallback up to Jira and Confluence once the Atlassian MCP is connected. Use when the user runs /sync or asks to push, upload, or sync local issues and pages to Jira/Confluence.
+argument-hint: [jira | confluence | project key]
 ---
 
 # sync
@@ -124,3 +125,23 @@ Two markdown blocks:
 - Refused cleanly with "Atlassian not connected — nothing to sync to." when in local fallback mode
 - Local `key:` field (e.g. `PROD-1`) is never modified; only `jira_key:` / `confluence_id:` / `sprint_id:` and `synced_at:` are added
 - Ledger `workspace/.meta/sync-map.json` rebuilt from frontmatter if missing (frontmatter is authoritative)
+
+## Usage
+
+```
+/sync
+/sync jira
+/sync confluence
+/sync MYPROJ
+```
+
+Examples:
+- `/sync` — push everything (issues, sprints, pages)
+- `/sync jira` — push Jira issues and sprints only
+- `/sync confluence` — push Confluence pages only
+- `/sync MYPROJ` — push issues and sprints for a specific project key
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` and `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md (used to map local keys to real project/space keys)
+- **A live Atlassian connection is required** — this command does nothing useful in local-only mode. Add `.mcp.json` (copy from `.mcp.json.example`) and restart the session to enable live mode. See `connectors/atlassian/CONNECTOR.md` and `connectors/local/CONNECTOR.md`.

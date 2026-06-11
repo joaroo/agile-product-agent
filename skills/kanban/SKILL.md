@@ -1,6 +1,7 @@
 ---
 name: kanban
 description: Triage incoming work, move cards through kanban stages, check WIP limits, and review flow in Jira. Use when the user runs /kanban or asks to triage, move cards, check WIP, or improve flow.
+argument-hint: [triage | move | wip-check | flow-review]
 ---
 
 # kanban
@@ -65,3 +66,22 @@ Invoked by `/kanban`. Also triggered when user asks to triage new issues, move c
 - Triage suggestions are recommendations — user confirms before any write
 - WIP limit threshold (2 per person) is a default — adjust if user states a different limit
 - Aging thresholds (7 days new, 5 days in-progress) stated explicitly in output
+
+## Usage
+
+```
+/kanban [action]
+```
+
+Actions: `triage` | `move [key] to [status]` | `wip-check` | `flow-review`
+
+Examples:
+- `/kanban triage` — triage new issues from the last 7 days
+- `/kanban move PROJ-42 to "In Review"` — transition a card
+- `/kanban wip-check` — flag WIP limit violations and aging in-progress items
+- `/kanban flow-review` — full flow health analysis
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- Atlassian OAuth active with Jira write permission (for moves) — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

@@ -1,6 +1,7 @@
 ---
 name: discover
 description: Synthesize Jira and Confluence data to surface product opportunities, gaps, stale work, and user pain points. Use when the user runs /discover or asks about product direction, feature gaps, or what to build next.
+argument-hint: [focus area]
 ---
 
 # discover
@@ -68,3 +69,21 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
 - No invented issue keys or page IDs
 - If a query returns 0 results, state that explicitly
 - Focus area respected throughout — do not drift into unrelated topics
+
+## Usage
+
+```
+/discover
+/discover [focus area]
+```
+
+Examples:
+- `/discover` — broad discovery across the default project
+- `/discover onboarding` — discovery scoped to onboarding theme
+- `/discover billing sprint-ready` — discovery filtered to billing + items ready for sprint
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

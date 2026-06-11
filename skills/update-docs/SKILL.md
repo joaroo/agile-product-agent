@@ -1,6 +1,7 @@
 ---
 name: update-docs
 description: Create or update Confluence pages (specs, decision records, meeting notes, UX/design docs) using house templates. Use when the user runs /update-docs or asks to write or update a page, spec, ADR, or wiki entry.
+argument-hint: [page title or topic]
 ---
 
 # update-docs
@@ -59,3 +60,20 @@ Action: created | updated
 - Always show draft for user confirmation on destructive updates
 - Code blocks must use appropriate language specifiers
 - No fabricated page IDs — always resolve via search
+
+## Usage
+
+```
+/update-docs [page title or ID] [content or instructions]
+/update-docs new [title] in [space] [content]
+```
+
+Examples:
+- `/update-docs "API Reference" add section for authentication`
+- `/update-docs new "Sprint 42 Retrospective" in TEAM [paste content]`
+- `/update-docs "Architecture Overview" update the database section`
+
+## Required Config
+
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- Atlassian OAuth active with Confluence write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

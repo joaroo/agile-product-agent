@@ -1,6 +1,7 @@
 ---
 name: retro
 description: Facilitate a sprint retrospective — pull sprint metrics, structure what went well / what to improve / action items, and write the retro page. Use when the user runs /retro or asks to run, prepare, or write up a sprint retrospective.
+argument-hint: [sprint]
 ---
 
 # retro
@@ -78,3 +79,20 @@ Invoked by `/retro`. Also triggered when the user asks to run a retrospective, p
 - Never create Jira action-item issues without explicit user confirmation
 - If the sprint has no closed data, state "insufficient data" rather than inventing a narrative
 - "What to improve" framed as patterns and process, never individual blame
+
+## Usage
+
+```
+/retro
+/retro [sprint name or number]
+```
+
+Examples:
+- `/retro` — retrospective for the most recently closed sprint
+- `/retro Sprint 41` — retrospective for a specific named sprint
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md (for the retro page)
+- Atlassian OAuth active with Confluence write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

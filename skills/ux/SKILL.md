@@ -1,6 +1,7 @@
 ---
 name: ux
 description: Synthesise discovery + raw research/notes into UX research artifacts — personas, journey map, JTBD, findings, open questions — per standards/ux.md. Use when the user runs /ux, asks for UX synthesis, personas, or a journey map, or reaches the UX stage of /lifecycle.
+argument-hint: [initiative or focus]
 ---
 
 # ux
@@ -91,3 +92,19 @@ Invoked by `/ux` and by `lifecycle` at the UX stage. Also triggered when the use
 - Uses `ux.md` templates exactly; does not invent a freeform structure
 - NEVER write to Confluence without confirmation; no fabricated page IDs
 - Personas are only asserted as grounded when research supports them
+
+## Usage
+
+```
+/ux
+/ux [initiative or focus]
+```
+
+Examples:
+- `/ux onboarding` — UX synthesis for the onboarding initiative
+- `/ux` — synthesis for the current lifecycle initiative
+
+## Required Config
+
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

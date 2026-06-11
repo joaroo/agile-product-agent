@@ -1,6 +1,7 @@
 ---
 name: as
 description: Set, show, or clear the active output persona (PM, UX Researcher, Designer, Engineering Lead, Scrum Master, BA) for the session so other skills adapt tone, structure, and detail. Use when the user runs /as or asks to switch role/persona or change how outputs are framed.
+argument-hint: [pm | ux | design | dev | scrum | ba | reset]
 ---
 
 # as
@@ -112,3 +113,11 @@ Invoked by `/as`. Also responds to natural language like "switch to PM mode" or 
 ## Default (no persona set)
 
 Product Manager: insight-first, strategic framing, stakeholder-ready. Recommendations lead, evidence follows. Outputs are accessible to all roles and suitable for sharing upward.
+
+## Usage
+
+```
+/as [role]
+/as                   # show current persona
+/as reset             # clear persona, revert to default
+```

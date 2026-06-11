@@ -71,7 +71,7 @@ Install it as a Claude Code plugin from the GitHub marketplace:
 /plugin install agile-product-agent@joaroo
 ```
 
-Then run `/reload-plugins` (or restart Claude Code). All 14 commands (`/lifecycle`, `/ingest`, `/discover`, …) and their skills load automatically.
+Then run `/reload-plugins` (or restart Claude Code). All 14 skills (`/lifecycle`, `/ingest`, `/discover`, …) load automatically — each is invocable as a slash command and can also be triggered automatically by Claude when relevant.
 
 ### Local development
 

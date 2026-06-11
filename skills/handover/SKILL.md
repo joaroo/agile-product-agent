@@ -1,6 +1,7 @@
 ---
 name: handover
 description: Turn discovery + UX + design artifacts into a dev-ready handover — epics/stories with BDD acceptance criteria, linked specs, technical context, and a Definition-of-Ready check — then create the Jira issues on confirmation. Use when the user runs /handover or reaches the Dev Handover stage of /lifecycle.
+argument-hint: [initiative or epic scope]
 ---
 
 # handover
@@ -99,3 +100,20 @@ Confirm: "create all" | "create N" | "edit N" | "skip N"
 - In local fallback mode: keys allocated via `.meta/counters.json`, never invented; issues written in topological order
 - Carried Context header present and populated; Lifecycle Index updated with created keys on completion
 - Do not fabricate estimates — if points are unknown, state "unestimated" and flag against DoR
+
+## Usage
+
+```
+/handover
+/handover [initiative or scope]
+```
+
+Examples:
+- `/handover checkout` — dev handover package for the checkout initiative
+- `/handover` — handover for the current lifecycle initiative
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

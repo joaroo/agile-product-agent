@@ -1,6 +1,7 @@
 ---
 name: status
 description: Generate project health reports with burndown, velocity trend, and risk signals from Jira. Use when the user runs /status or asks for sprint progress, project health, velocity, or burndown.
+argument-hint: [sprint | date range]
 ---
 
 # status
@@ -84,3 +85,22 @@ Invoked by `/status`. Also triggered when user asks for project health, sprint p
 - Burndown must state clearly if sprint start date is assumed vs confirmed
 - Risk signals must reference actual issue keys
 - Velocity trend requires ≥2 data points — if fewer, state "insufficient data"
+
+## Usage
+
+```
+/status
+/status [sprint name or number]
+/status last [N] sprints
+```
+
+Examples:
+- `/status` — current sprint health report
+- `/status last 3 sprints` — velocity trend across last 3 sprints
+- `/status Sprint 41` — report for a specific named sprint
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_JIRA_BOARD_ID` in AGENTS.md (for burndown data)
+- Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

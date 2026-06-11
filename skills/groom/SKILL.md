@@ -1,6 +1,7 @@
 ---
 name: groom
 description: Query, prioritize, and improve Jira backlog quality: flag missing ACs, vague titles, oversized or stale stories, and draft BDD acceptance criteria. Use when the user runs /groom or asks to refine, clean, or prioritize the backlog.
+argument-hint: [epic | label | mode]
 ---
 
 # groom
@@ -80,3 +81,23 @@ Acceptance Criteria:
 - Issue titles must follow naming conventions in `standards/jira.md`
 - Design task ACs use outcome-based format per `standards/design.md` — never process steps
 - Duplicate detection uses search results, not pattern-matching assumptions
+
+## Usage
+
+```
+/groom
+/groom [mode] [scope]
+```
+
+Modes: `triage` (quick pass) | `deepen` (add ACs) | `prune` (remove stale)
+
+Examples:
+- `/groom` — full grooming pass on default project
+- `/groom triage` — quick priority + quality check
+- `/groom deepen epic:checkout` — add acceptance criteria to checkout epic items
+- `/groom prune` — identify and propose removal of stale backlog items
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- Atlassian OAuth active with Jira write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)

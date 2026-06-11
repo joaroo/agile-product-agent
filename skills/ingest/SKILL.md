@@ -1,6 +1,7 @@
 ---
 name: ingest
 description: Parse local docs, meeting notes, transcripts, or email into draft Jira issues and Confluence pages for review before any write. Use when the user runs /ingest, shares a doc or notes, or asks to create tickets from content.
+argument-hint: [file path | email label]
 ---
 
 # ingest
@@ -84,3 +85,23 @@ Confirm: "create all" | "create issues only" | "skip N" | "edit N"
 - Assignee is a suggestion only — never set without confirmation
 - If source is ambiguous or lacks clear action items, report "no actionable items found" rather than fabricating
 - Email access requires EMAIL_MCP_TOOL set in .env — if not set, state "email connector not configured"
+
+## Usage
+
+```
+/ingest [source]
+/ingest [file path]
+/ingest email [label or thread ID]
+```
+
+Examples:
+- `/ingest ~/notes/meeting-2026-05-07.md` — parse a local meeting notes file
+- `/ingest email label:standup` — fetch and parse recent standup emails
+- `/ingest` then paste content — parse content pasted directly into conversation
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md (for page creation)
+- Atlassian OAuth active with write permission — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)
+- `EMAIL_MCP_TOOL` in `.env` (only required for email source; email has no local fallback)

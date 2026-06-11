@@ -1,6 +1,7 @@
 ---
 name: lifecycle
 description: Orchestrate the end-to-end product flow — Ingest → Discovery → UX → Design → Dev Handover — as a gated, persona-owned pipeline that produces one traceable artifact per stage and a Lifecycle Index. Use when the user runs /lifecycle, asks to take an idea/BRD/notes from input to dev-ready, or to run the full product flow.
+argument-hint: [ingest | discovery | ux | design | handover]
 ---
 
 # lifecycle
@@ -90,3 +91,21 @@ Next: /sprint-plan or /kanban
 - A skipped stage is recorded as `Skipped` with a reason, not silently omitted
 - In local fallback mode, all reads/writes go through `workspace/` per `standards/local-store.md`; no invented keys or page IDs
 - Delegate stage work to the stage skills — do not re-implement extraction, synthesis, spec, or decomposition logic here
+
+## Usage
+
+```
+/lifecycle                 # run/continue from the current stage
+/lifecycle ux              # jump to the UX stage (recovers context from the index)
+/lifecycle handover        # jump straight to dev handover
+```
+
+Examples:
+- `/lifecycle` — start a new flow (ingest a BRD/notes) or continue an in-progress one
+- `/lifecycle discovery` — resume at discovery for an already-ingested initiative
+
+## Required Config
+
+- `DEFAULT_JIRA_PROJECT_KEY` in AGENTS.md
+- `DEFAULT_CONFLUENCE_SPACE_ID` in AGENTS.md
+- Atlassian OAuth active — or none; falls back to local `workspace/` files (see `connectors/local/CONNECTOR.md`)
