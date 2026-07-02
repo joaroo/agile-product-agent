@@ -62,6 +62,8 @@ Run `/lifecycle`. Five gated stages later, you have a linked paper trail:
 
 Each artifact links back to the one before it, and the Lifecycle Index threads the whole chain end to end.
 
+This exact scenario ships as a runnable fixture: `examples/guest-checkout/` holds the input BRD and a completed `expected-workspace/` — use it as a demo, or as an offline regression check after editing any skill or standard (see `examples/guest-checkout/README.md`).
+
 ## Installation
 
 Install it as a Claude Code plugin from the GitHub marketplace:
@@ -101,10 +103,10 @@ By default everything runs offline (see **Local fallback** below). To work again
 
 1. Copy `.mcp.json.example` to `.mcp.json`, then choose a connection method:
    - **Hosted Rovo MCP server** (no local install, browser OAuth) — the default in the example file
-   - **Local stdio package** (`npx @atlassian/mcp-server`)
+   - **Fully local server** (community `mcp-atlassian`) — runs entirely on your machine, authenticates with API tokens (same credentials as the Atlassian CLI), no browser OAuth; also works with Server/Data Center
 
-   Both expose the same tools — see `connectors/atlassian/CONNECTOR.md` for the exact configs.
-2. Run `claude` — it prompts for Atlassian OAuth on first tool use
+   Both register as the `atlassian` MCP server, so the plugin works identically with either — see `connectors/atlassian/CONNECTOR.md` for the exact configs.
+2. Run `claude` — the hosted server prompts for OAuth in the browser on first tool use; the local server authenticates via its configured tokens
 
 Then set your project defaults (used in **both** live and local mode): copy `.env.example` to `.env` in your project root and fill in `DEFAULT_JIRA_PROJECT_KEY`, `DEFAULT_CONFLUENCE_SPACE_ID`, and — optionally — `DEFAULT_JIRA_BOARD_ID` (kanban/burndown) and `EMAIL_MCP_TOOL` (`/ingest` from email). `.env` lives in your project, not the plugin, so it's per-project and survives plugin updates. If you skip it, the agent prompts once and falls back to `PROD` / `TEAM`.
 
@@ -124,12 +126,12 @@ No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the 
 | `/as [role]` | Set active persona to adapt output tone and structure |
 | `/lifecycle` | Run the end-to-end flow: ingest → discovery → UX → design → dev handover, gated per stage |
 | `/ingest` | Parse docs, BRDs, meeting notes, or email into Jira issues / Confluence pages |
-| `/discover` | Product discovery from Jira + Confluence |
+| `/discover` | Product discovery from Jira + Confluence; can save the result as a Discovery Brief that feeds `/lifecycle` |
 | `/ux` | Synthesise discovery + research into UX artifacts (personas, journey map, JTBD, findings) |
 | `/design` | Turn UX + discovery into a Design Spec (all states, accessibility, handoff) |
 | `/handover` | Decompose into epics/stories with BDD ACs + a Definition-of-Ready check |
 | `/update-docs` | Create or update Confluence pages |
-| `/sync` | Push local `workspace/` up to Jira and Confluence (requires live Atlassian connection) |
+| `/sync` | Push local `workspace/` up to Jira and Confluence (requires live Atlassian connection); flags items edited remotely since the last sync before overwriting |
 | **Secondary Command** | **Description** |
 | `/sprint-plan` | Plan next sprint from backlog |
 | `/groom` | Groom and prioritize backlog |
@@ -139,7 +141,7 @@ No `.mcp.json`? No problem. When `mcp__atlassian__*` tools are unavailable, the 
 
 ## Personas
 
-Start a session with `/as [role]` to adapt all outputs to your role. Each persona changes how commands structure and frame their responses — and is the default lens for its stage in the pipeline above.
+Run `/as [role]` to adapt all outputs to your role. The choice is saved to `workspace/.meta/persona`, so it survives context compaction and new sessions until you `/as reset`. Each persona changes how commands structure and frame their responses — and is the default lens for its stage in the pipeline above.
 
 | Command | Role | Output style |
 |---------|------|-------------|

@@ -2,6 +2,7 @@
 name: sync
 description: Push the local workspace/ fallback up to Jira and Confluence once the Atlassian MCP is connected. Use when the user runs /sync or asks to push, upload, or sync local issues and pages to Jira/Confluence.
 argument-hint: [jira | confluence | project key]
+allowed-tools: Read, Grep, Glob, Edit, mcp__atlassian__getJiraIssue, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__getConfluencePage, mcp__atlassian__searchConfluenceUsingCql, mcp__atlassian__searchAtlassian, mcp__atlassian__fetchAtlassian, mcp__atlassian__jira_get_issue, mcp__atlassian__jira_search, mcp__atlassian__confluence_get_page, mcp__atlassian__confluence_search
 ---
 
 # sync
@@ -10,7 +11,7 @@ Reconciles the local `workspace/` fallback with live Jira and Confluence: classi
 
 Style references: `standards/local-store.md`, `standards/jira.md`, `standards/confluence.md`
 
-> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+> **Plugin file paths:** Bundled files (`AGENTS.md`, `standards/…`, `connectors/…`, `skills/…`) resolve from the plugin root at `${CLAUDE_SKILL_DIR}/../..`, never the working directory. Only `workspace/…` and `.env` live in the user's project.
 
 ## Trigger Conditions
 
@@ -23,7 +24,7 @@ Invoked by `/sync`. Also triggered when the user says "push local work up", "upl
 
 ## Workflow
 
-0. **Resolve connection mode + persona** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode. Check active persona via `/as`; default persona: Product Manager.
+0. **Resolve connection mode + persona** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode. Read `workspace/.meta/persona` (written by `/as`); absent → Product Manager.
 
    **MODE GATE** — `/sync` requires live mode (`mcp__atlassian__*` tools must be present) and a non-empty `workspace/`. In local fallback mode, refuse immediately: "Atlassian not connected — nothing to sync to." and stop. Do not proceed.
 
@@ -36,6 +37,8 @@ Invoked by `/sync`. Also triggered when the user says "push local work up", "upl
    - **create** — no `jira_key` / `confluence_id` / `sprint_id` in frontmatter (never been synced)
    - **update** — has a recorded real ID, AND `updated:` > `synced_at:` (locally modified since last sync)
    - **skip** — has a recorded real ID, AND `updated:` ≤ `synced_at:` (no local changes)
+
+   **Remote-drift check** — for each **update** item, fetch the remote via `atlassian-read-jira` / `atlassian-read-confluence` and compare its last-modified timestamp against the local `synced_at:`. If the remote changed since the last sync, mark the item **⚠ remote drift**: the push will overwrite edits made directly in Jira/Confluence. Drifted items are listed in the dry-run and pushed only if the user confirms them explicitly (confirming the overall plan does not include them).
 
 2. **Resolve targets** — Map local project key (e.g. `PROD`) to the real Jira project key and local space key (e.g. `TEAM`) to the real Confluence space key using `.env` defaults. If the mapping is ambiguous or unset, ask the user once before proceeding.
 
@@ -60,7 +63,12 @@ Invoked by `/sync`. Also triggered when the user says "push local work up", "upl
    | PROD-2       | MYPROJ-102       |
    | team/decision-auth-strategy | (page id TBD) |
 
-   Confirm to push, or type "cancel" to abort.
+   ### ⚠ Remote drift — confirm each overwrite separately
+   | Item | Remote modified | Last synced |
+   |------|----------------|-------------|
+   | PROD-4 | 2026-06-20 | 2026-06-10 |
+
+   Confirm to push, or type "cancel" to abort. Drifted items require an explicit "overwrite PROD-4" (or "overwrite all drifted").
    ```
 
    **Do NOT write anything until the user confirms.**
@@ -122,6 +130,7 @@ Two markdown blocks:
 - Never fabricate real Jira keys or Confluence IDs — only use values returned by the write aliases
 - Dry-run summary presented and explicit user confirmation received before ANY write
 - Idempotent: items with `updated:` ≤ `synced_at:` are skipped; re-running never creates duplicates
+- Remote drift surfaced per item in the dry-run; a drifted item is never overwritten without its own explicit confirmation
 - Real ids written back to local file frontmatter and ledger after each successful push
 - Unsupported operations (status transitions, sprint API) reported, not treated as failures
 - Refused cleanly with "Atlassian not connected — nothing to sync to." when in local fallback mode

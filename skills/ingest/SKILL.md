@@ -2,6 +2,7 @@
 name: ingest
 description: Parse local docs, meeting notes, transcripts, or email into draft Jira issues and Confluence pages for review before any write. Use when the user runs /ingest, shares a doc or notes, or asks to create tickets from content.
 argument-hint: [file path | email label]
+allowed-tools: Read, Grep, Glob, mcp__atlassian__getJiraIssue, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__getConfluencePage, mcp__atlassian__searchConfluenceUsingCql, mcp__atlassian__searchAtlassian, mcp__atlassian__fetchAtlassian, mcp__atlassian__jira_get_issue, mcp__atlassian__jira_search, mcp__atlassian__confluence_get_page, mcp__atlassian__confluence_search
 ---
 
 # ingest
@@ -12,7 +13,7 @@ Derived from: business-analyst (requirements extraction) + technical-writer (awe
 
 Style references: `standards/jira.md`, `standards/bdd.md`, `standards/confluence.md`, `standards/ux.md`, `standards/design.md`, `standards/requirements.md`, `standards/local-store.md`
 
-> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+> **Plugin file paths:** Bundled files (`AGENTS.md`, `standards/…`, `connectors/…`, `skills/…`) resolve from the plugin root at `${CLAUDE_SKILL_DIR}/../..`, never the working directory. Only `workspace/…` and `.env` live in the user's project.
 
 ## Trigger Conditions
 
@@ -27,7 +28,7 @@ Invoked by `/ingest`. Also triggered when user pastes meeting notes, shares a do
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md`. Default persona: Product Manager. BA persona: flag ambiguity before creating tickets and route requirements content to `standards/requirements.md`. UX Researcher: route to `standards/ux.md`; Designer: route to `standards/design.md`.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — read `workspace/.meta/persona` (written by `/as`) and apply its Per-Command Adaptations block in `standards/personas.md`. Absent → Product Manager. BA persona: flag ambiguity before creating tickets and route requirements content to `standards/requirements.md`. UX Researcher: route to `standards/ux.md`; Designer: route to `standards/design.md`.
 
 1. **Ingest source**
    - `file`: Read the file from local filesystem (markdown, txt, pdf summary)

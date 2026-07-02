@@ -2,6 +2,8 @@
 name: design
 description: Turn UX synthesis + discovery into a Design Spec with all states (default/loading/empty/error/success), accessibility checklist, component docs, and handoff notes per standards/design.md. Use when the user runs /design, asks for a design spec or handoff, or reaches the Design stage of /lifecycle.
 argument-hint: [initiative or focus]
+allowed-tools: Read, Grep, Glob, mcp__atlassian__getJiraIssue, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__getConfluencePage, mcp__atlassian__searchConfluenceUsingCql, mcp__atlassian__searchAtlassian, mcp__atlassian__fetchAtlassian, mcp__atlassian__jira_get_issue, mcp__atlassian__jira_search, mcp__atlassian__confluence_get_page, mcp__atlassian__confluence_search
+disallowed-tools: mcp__atlassian__createJiraIssue, mcp__atlassian__editJiraIssue, mcp__atlassian__transitionJiraIssue, mcp__atlassian__jira_create_issue, mcp__atlassian__jira_update_issue, mcp__atlassian__jira_transition_issue
 ---
 
 # design
@@ -12,7 +14,7 @@ Derived from: product-designer + design-system-architect (awesome-agnostic-skill
 
 Style references: `standards/design.md`, `standards/content.md`, `standards/lifecycle.md`, `standards/confluence.md`, `standards/local-store.md`
 
-> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+> **Plugin file paths:** Bundled files (`AGENTS.md`, `standards/…`, `connectors/…`, `skills/…`) resolve from the plugin root at `${CLAUDE_SKILL_DIR}/../..`, never the working directory. Only `workspace/…` and `.env` live in the user's project.
 
 ## Trigger Conditions
 
@@ -26,7 +28,7 @@ Invoked by `/design` and by `lifecycle` at the Design stage. Also triggered when
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Adopt the Designer lens** by default: all states (default, loading, empty, error, success) and an accessibility checklist are mandatory in every spec, regardless of active persona. Outcome-based ACs, not process steps.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Adopt the Designer lens** by default: all states (default, loading, empty, error, success) and an accessibility checklist are mandatory in every spec, regardless of active persona. Outcome-based ACs, not process steps. If `workspace/.meta/persona` (written by `/as`) names another persona, apply its cross-cutting framing per `standards/personas.md` (e.g. UX Writer → the Content section is a first-class deliverable).
 
 1. **Recover context** — Read the Lifecycle Index, Discovery Brief, and UX Synthesis. Map each user story / journey stage to the flows the spec must cover.
 

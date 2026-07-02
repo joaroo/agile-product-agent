@@ -2,6 +2,8 @@
 name: ux
 description: Synthesise discovery + raw research/notes into UX research artifacts — personas, journey map, JTBD, findings, open questions — per standards/ux.md. Use when the user runs /ux, asks for UX synthesis, personas, or a journey map, or reaches the UX stage of /lifecycle.
 argument-hint: [initiative or focus]
+allowed-tools: Read, Grep, Glob, mcp__atlassian__getJiraIssue, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__getConfluencePage, mcp__atlassian__searchConfluenceUsingCql, mcp__atlassian__searchAtlassian, mcp__atlassian__fetchAtlassian, mcp__atlassian__jira_get_issue, mcp__atlassian__jira_search, mcp__atlassian__confluence_get_page, mcp__atlassian__confluence_search
+disallowed-tools: mcp__atlassian__createJiraIssue, mcp__atlassian__editJiraIssue, mcp__atlassian__transitionJiraIssue, mcp__atlassian__jira_create_issue, mcp__atlassian__jira_update_issue, mcp__atlassian__jira_transition_issue
 ---
 
 # ux
@@ -12,7 +14,7 @@ Derived from: ux-researcher + research-synthesizer (awesome-agnostic-skills biz)
 
 Style references: `standards/ux.md`, `standards/lifecycle.md`, `standards/confluence.md`, `standards/local-store.md`
 
-> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+> **Plugin file paths:** Bundled files (`AGENTS.md`, `standards/…`, `connectors/…`, `skills/…`) resolve from the plugin root at `${CLAUDE_SKILL_DIR}/../..`, never the working directory. Only `workspace/…` and `.env` live in the user's project.
 
 ## Trigger Conditions
 
@@ -26,7 +28,7 @@ Invoked by `/ux` and by `lifecycle` at the UX stage. Also triggered when the use
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Adopt the UX Researcher lens** by default (user-centric language, findings as behaviours not recommendations, evidence and quotes, open questions flagged). If a different persona is set via `/as`, honour its cross-cutting framing but keep the `ux.md` artifact structure.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Adopt the UX Researcher lens** by default (user-centric language, findings as behaviours not recommendations, evidence and quotes, open questions flagged). If `workspace/.meta/persona` (written by `/as`) names a different persona, honour its cross-cutting framing per `standards/personas.md` but keep the `ux.md` artifact structure.
 
 1. **Recover context** — Read the Lifecycle Index and the Discovery Brief. Gather upstream research/notes (from the Input Brief, linked appendix pages, or user-provided). If no research exists, state that and proceed with the synthesis labelled as **assumption-based** (flag every unevidenced claim).
 

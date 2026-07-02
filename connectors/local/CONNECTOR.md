@@ -22,6 +22,8 @@ The local connector requires no OAuth, no API tokens, and no `.mcp.json`. It ope
 workspace/                        # git-ignored; created on first write
   .meta/
     counters.json                 # issue key counters per project key
+    persona                       # active output persona, written by /as
+    sync-map.json                 # local→remote id ledger, maintained by /sync
   jira/
     {PROJECT_KEY}/
       issues/{PROJECT_KEY}-{N}.md

@@ -13,16 +13,30 @@ Mode is auto-detected; no manual toggle is needed. Skills call the same aliases 
 
 All skills reference connectors by alias only. Never hardcode MCP tool names in skill files.
 
-| Alias | Resolves to | Fallback (local) |
+| Alias | Resolves to (live) | Fallback (local) |
 |-------|-------------|-----------------|
-| `atlassian-read-jira` | `mcp__atlassian__read_jira` | Read issue frontmatter from `workspace/jira/{KEY}/issues/{KEY}.md` |
-| `atlassian-search-jira` | `mcp__atlassian__search_jira` | Grep issue frontmatter per JQL translation table in `standards/local-store.md` |
-| `atlassian-write-jira` | `mcp__atlassian__write_jira` | Create or update `workspace/jira/{KEY}/issues/{KEY}.md`; allocate key via `.meta/counters.json` |
-| `atlassian-read-confluence` | `mcp__atlassian__read_confluence` | Read `workspace/confluence/{SPACE}/{slug}.md` |
-| `atlassian-search-confluence` | `mcp__atlassian__search_confluence` | Grep across `workspace/confluence/{SPACE}/` titles and bodies per CQL translation table in `standards/local-store.md` |
-| `atlassian-write-confluence` | `mcp__atlassian__write_confluence` | Write `workspace/confluence/{SPACE}/{slug}.md` |
-| `atlassian-cross-search` | `mcp__atlassian__search_atlassian` | Grep across both `workspace/jira/` issue summaries and `workspace/confluence/` page titles and bodies |
+| `atlassian-read-jira` | `mcp__atlassian__getJiraIssue` | Read issue frontmatter from `workspace/jira/{KEY}/issues/{KEY}.md` |
+| `atlassian-search-jira` | `mcp__atlassian__searchJiraIssuesUsingJql` | Grep issue frontmatter per JQL translation table in `standards/local-store.md` |
+| `atlassian-write-jira` | `mcp__atlassian__createJiraIssue` (new) · `mcp__atlassian__editJiraIssue` (update) · `mcp__atlassian__transitionJiraIssue` (status) | Create or update `workspace/jira/{KEY}/issues/{KEY}.md`; allocate key via `.meta/counters.json` |
+| `atlassian-read-confluence` | `mcp__atlassian__getConfluencePage` | Read `workspace/confluence/{SPACE}/{slug}.md` |
+| `atlassian-search-confluence` | `mcp__atlassian__searchConfluenceUsingCql` | Grep across `workspace/confluence/{SPACE}/` titles and bodies per CQL translation table in `standards/local-store.md` |
+| `atlassian-write-confluence` | `mcp__atlassian__createConfluencePage` (new) · `mcp__atlassian__updateConfluencePage` (update) | Write `workspace/confluence/{SPACE}/{slug}.md` |
+| `atlassian-cross-search` | `mcp__atlassian__searchAtlassian` (fetch by ARI: `mcp__atlassian__fetchAtlassian`) | Grep across both `workspace/jira/` issue summaries and `workspace/confluence/` page titles and bodies |
 | `email-read` | `${EMAIL_MCP_TOOL}` | — (no local fallback; requires EMAIL_MCP_TOOL in .env) |
+
+Tool names above track the hosted Atlassian Rovo MCP server (connector Option A) and may shift between server releases. With the fully local `mcp-atlassian` server (connector Option B), the same aliases resolve to its tool names instead:
+
+| Alias | Resolves to (`mcp-atlassian`, Option B) |
+|-------|------------------------------------------|
+| `atlassian-read-jira` | `mcp__atlassian__jira_get_issue` |
+| `atlassian-search-jira` | `mcp__atlassian__jira_search` |
+| `atlassian-write-jira` | `mcp__atlassian__jira_create_issue` (new) · `mcp__atlassian__jira_update_issue` (update) · `mcp__atlassian__jira_transition_issue` (status) |
+| `atlassian-read-confluence` | `mcp__atlassian__confluence_get_page` |
+| `atlassian-search-confluence` | `mcp__atlassian__confluence_search` |
+| `atlassian-write-confluence` | `mcp__atlassian__confluence_create_page` (new) · `mcp__atlassian__confluence_update_page` (update) |
+| `atlassian-cross-search` | no single tool — run `jira_search` + `confluence_search` and merge results |
+
+Resolution rule: match aliases against whichever `mcp__atlassian__*` tools the session actually exposes. If a name from either table is absent, resolve by capability (read issue / JQL search / create page / …) rather than failing.
 
 ## Permission Tiers
 
@@ -32,11 +46,13 @@ No write access. No email access.
 
 Agents in this tier: `jira-reader`, `confluence-reader`, `backlog-reader`, `capacity-analyzer`, `insights-synthesizer`
 
+Exception: `insights-synthesizer` may write a single Discovery Brief page via `atlassian-write-confluence` — only when the user explicitly confirms saving a `/discover` report as a brief, never as part of the report itself.
+
 ### Writer agents
 All reader access plus: `atlassian-write-jira`
-Cannot write to Confluence. Cannot read email.
+Cannot read email. `sprint-writer` may additionally write the sprint planning page via `atlassian-write-confluence` on confirmation; `kanban-writer` cannot write to Confluence at all.
 
-Agents in this tier: `sprint-writer` (Jira only), `kanban-writer`
+Agents in this tier: `sprint-writer`, `kanban-writer`
 
 ### Doc-updater agents
 All reader access plus: `atlassian-write-confluence`
@@ -92,17 +108,9 @@ Before using any default, read `.env` from the working directory. If the file or
 
 ## Persona Awareness
 
-Skills should adapt tone, detail level, and output structure based on the user's role. See `standards/personas.md` for the six core personas and how each prefers outputs structured:
+Skills adapt tone, detail level, and output structure based on the user's role. **`standards/personas.md` is the single canonical source** for the seven personas and their per-command adaptations — skills read it at step 0; do not duplicate its content elsewhere.
 
-- **Product Manager** — insight before evidence, strategic framing, decision records
-- **UX Researcher** — research artifact templates from `standards/ux.md`, user behaviours not recommendations, evidence and quotes
-- **UX Writer** — content design lens (no stage); voice & tone, microcopy, and terminology from `standards/content.md`; real copy in every state, never placeholder
-- **Designer** — design artifact templates from `standards/design.md`, all states + accessibility by default, outcome-based ACs
-- **Engineering Lead** — BDD ACs, edge cases, precise scope, honest status
-- **Scrum Master** — metrics first, ceremony-ready outputs, flow/risk signals
-- **Business Analyst** — requirements traceability, structured templates from `standards/requirements.md`, ACs that are testable
-
-If no persona is set, default to Product Manager: insight-first, strategic framing, stakeholder-ready outputs.
+The active persona persists at `workspace/.meta/persona` (one line, the full persona name, e.g. `UX Writer`). `/as` writes it; every skill reads it at step 0. If the file is absent, default to Product Manager: insight-first, strategic framing, stakeholder-ready outputs.
 
 ### Lifecycle stage ownership
 

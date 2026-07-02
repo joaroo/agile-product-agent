@@ -210,8 +210,78 @@ Archetypes of people who use this agent. Skills should adapt tone, detail level,
 
 ---
 
+## Per-Command Adaptations
+
+Canonical reference for how the active persona changes each command's output. `/as` sets the persona; skills read it at step 0 and apply the matching block below.
+
+> **Fallback rule:** For any command not listed under a persona, apply that persona's general output style (the "Output style" section above).
+
+### Product Manager
+- **All commands:** lead with insight or recommendation, evidence below
+- **`/lifecycle`:** owns the Discovery stage — frame the Discovery Brief around the user problem, goals, and success metrics, not a task list
+- **`/discover`:** strategic framing, connect gaps to user outcomes and business goals
+- **`/update-docs`:** use spec or decision record templates; write for stakeholder audience
+- **`/sprint-plan`:** emphasise sprint goal and user value, not just task list
+- **`/status`:** executive summary first; trends and risk signals, not raw metrics
+- **`/groom`:** flag strategic misalignments (wrong priority, no epic link) over syntax issues
+- **`/retro`:** surface themes and outcomes; link action items to product goals
+
+### UX Researcher
+- **All commands:** user-centric language; findings stated as user behaviours and attitudes, not recommendations
+- **`/ux`:** owns the UX stage — produce personas, journey maps, JTBD, and findings per `standards/ux.md`; back every finding with evidence/quotes and flag unevidenced claims as provisional
+- **`/discover`:** surface research artifacts (reports, personas, journey maps) prominently per `standards/ux.md`
+- **`/update-docs`:** use templates from `standards/ux.md` exactly; lead with user impact
+- **`/ingest`:** route parsed content to UX research templates in `standards/ux.md`; include participant quotes as evidence
+- **`/sprint-plan`:** flag research dependencies — stories that lack user research backing
+
+### UX Writer
+- **All commands:** lead with the actual strings in context; flag placeholder/"TBD" copy; use `standards/content.md` (voice & tone, microcopy patterns, terminology)
+- **`/design`:** treat the spec's Content section as a first-class deliverable — real copy for every state (empty, error, loading, success), errors that say what to do next, CTAs as verb + object
+- **`/ux`:** derive voice and tone from research findings; surface terminology users actually use
+- **`/handover`:** final strings belong in story ACs — flag any story that ships with placeholder copy as failing DoR
+- **`/update-docs`:** produce a Voice & Tone Guide or Terminology Glossary per `standards/content.md`
+- **`/ingest`:** capture terminology and content decisions; route copy/voice content to `standards/content.md`
+- *(Output lens only — owns no lifecycle stage.)*
+
+### Designer
+- **All commands:** all states (default, loading, empty, error, success) and accessibility by default
+- **`/design`:** owns the Design stage — produce a Design Spec with every state + accessibility checklist + handoff notes per `standards/design.md`; run the handoff checklist before marking ready
+- **`/update-docs`:** use templates from `standards/design.md` exactly; include all states and accessibility checklist
+- **`/groom`:** flag missing design specs or handoff docs as a blocker; check accessibility ACs; use outcome-based AC format per `standards/design.md`
+- **`/ingest`:** route parsed content to design templates in `standards/design.md` (design review notes, handoff notes)
+- **`/sprint-plan`:** flag design dependencies — stories that lack a linked handoff or spec
+
+### Engineering Lead
+- **All commands:** precision over narrative; edge cases and error states always included
+- **`/handover`:** owns the Dev Handover stage — decompose into epics/stories with BDD ACs (happy/sad/edge), link specs/research, run the Definition-of-Ready check, and list DoR failures rather than hiding them
+- **`/groom`:** BDD ACs required; flag missing context, epic links, or out-of-scope sections
+- **`/sprint-plan`:** capacity-first; flag ungroomed tickets before committing
+- **`/status`:** include risk signals and blockers plainly; no softening
+- **`/update-docs`:** technical decision record format; include consequences section
+- **`/discover`:** surface technical feasibility signals; flag tech-debt ratio vs user-facing work
+- **`/retro`:** action items drafted as Jira tickets with BDD ACs; technical risk items elevated
+
+### Scrum Master
+- **All commands:** metrics and tables first, narrative second
+- **`/status`:** velocity trend, WIP, burndown — ceremony-ready format
+- **`/sprint-plan`:** output ready to present to team; include capacity math explicitly
+- **`/kanban`:** WIP violations and blocked items flagged immediately at top of output
+- **`/groom`:** focus on Definition of Ready checklist compliance
+- **`/retro`:** ceremony-ready format; What went well / What to improve / Action items structured for direct facilitation; action items each have an owner and due date
+
+### Business Analyst
+- **All commands:** requirements traceability; every output links to a user need or business goal
+- **`/lifecycle`:** owns the Ingest stage — extract candidate requirements with traceability IDs (REQ-N) from docs/BRDs/notes per `standards/requirements.md`; flag ambiguity before drafting
+- **`/ingest`:** flag ambiguity rather than assuming; ask before creating tickets from unclear input; route requirements content to `standards/requirements.md`
+- **`/groom`:** enforce complete description template (Context + ACs + Out of Scope)
+- **`/update-docs`:** use requirements templates from `standards/requirements.md`; call out when content doesn't fit a template
+- **`/discover`:** surface existing requirements and specs to avoid duplication
+
+---
+
 ## How Skills Should Use These Personas
 
+- The active persona persists at `workspace/.meta/persona` (written by `/as`); skills read it at step 0 of their workflow
 - If the user identifies their role at the start of a session, adapt accordingly throughout
 - Default persona when none is set: **Product Manager** — insight-first, strategic framing, stakeholder-ready
 - For `/status` and `/discover`, lead with executive summary suitable for a PM or stakeholder; include detail below

@@ -2,6 +2,7 @@
 name: lifecycle
 description: Orchestrate the end-to-end product flow — Ingest → Discovery → UX → Design → Dev Handover — as a gated, persona-owned pipeline that produces one traceable artifact per stage and a Lifecycle Index. Use when the user runs /lifecycle, asks to take an idea/BRD/notes from input to dev-ready, or to run the full product flow.
 argument-hint: [ingest | discovery | ux | design | handover]
+allowed-tools: Read, Grep, Glob, Skill, mcp__atlassian__getJiraIssue, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__getConfluencePage, mcp__atlassian__searchConfluenceUsingCql, mcp__atlassian__searchAtlassian, mcp__atlassian__fetchAtlassian, mcp__atlassian__jira_get_issue, mcp__atlassian__jira_search, mcp__atlassian__confluence_get_page, mcp__atlassian__confluence_search
 ---
 
 # lifecycle
@@ -12,7 +13,7 @@ Derived from: product-manager + project-coordinator (awesome-agnostic-skills biz
 
 Style references: `standards/lifecycle.md`, `standards/confluence.md`, `standards/local-store.md`. Stage standards: `standards/requirements.md`, `standards/ux.md`, `standards/design.md`, `standards/jira.md`, `standards/bdd.md`.
 
-> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+> **Plugin file paths:** Bundled files (`AGENTS.md`, `standards/…`, `connectors/…`, `skills/…`) resolve from the plugin root at `${CLAUDE_SKILL_DIR}/../..`, never the working directory. Only `workspace/…` and `.env` live in the user's project.
 
 ## Trigger Conditions
 
@@ -37,7 +38,7 @@ Invoked by `/lifecycle`. Also triggered when the user asks to "take this from no
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, it informs cross-cutting framing, but each stage still adopts its owning persona as the lens and never abandons its discipline standard (see `standards/lifecycle.md` Persona ownership).
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — read `workspace/.meta/persona` (written by `/as`); it informs cross-cutting framing per `standards/personas.md`, but each stage still adopts its owning persona as the lens and never abandons its discipline standard (see `standards/lifecycle.md` Persona ownership).
 
 1. **Identify the initiative** — Resolve the initiative name from the argument, the ingested source, or by asking. Use `atlassian-search-confluence` to check for an existing `[Initiative] Lifecycle` index page.
 

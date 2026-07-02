@@ -2,6 +2,7 @@
 name: retro
 description: Facilitate a sprint retrospective — pull sprint metrics, structure what went well / what to improve / action items, and write the retro page. Use when the user runs /retro or asks to run, prepare, or write up a sprint retrospective.
 argument-hint: [sprint]
+allowed-tools: Read, Grep, Glob, mcp__atlassian__getJiraIssue, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__getConfluencePage, mcp__atlassian__searchConfluenceUsingCql, mcp__atlassian__searchAtlassian, mcp__atlassian__fetchAtlassian, mcp__atlassian__jira_get_issue, mcp__atlassian__jira_search, mcp__atlassian__confluence_get_page, mcp__atlassian__confluence_search
 ---
 
 # retro
@@ -12,7 +13,7 @@ Derived from: scrum-master + retrospective-facilitator (awesome-agnostic-skills 
 
 Style references: `standards/confluence.md`, `standards/jira.md`, `standards/local-store.md`
 
-> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+> **Plugin file paths:** Bundled files (`AGENTS.md`, `standards/…`, `connectors/…`, `skills/…`) resolve from the plugin root at `${CLAUDE_SKILL_DIR}/../..`, never the working directory. Only `workspace/…` and `.env` live in the user's project.
 
 ## Trigger Conditions
 
@@ -27,7 +28,7 @@ Invoked by `/retro`. Also triggered when the user asks to run a retrospective, p
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md`. Default persona: Product Manager (themes and outcomes first); Scrum Master gets the most ceremony-ready format.
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — read `workspace/.meta/persona` (written by `/as`) and apply its Per-Command Adaptations block in `standards/personas.md`. Absent → Product Manager (themes and outcomes first); Scrum Master gets the most ceremony-ready format.
 
 1. **Identify sprint** — Use `atlassian-search-jira` to resolve the target sprint:
    `project = {KEY} AND sprint in closedSprints() ORDER BY sprint DESC` (take the most recent unless the user named one). If no closed sprint exists, state "no closed sprint found" and stop.

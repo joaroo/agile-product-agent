@@ -10,6 +10,8 @@ Canonical specification for the local-file fallback. When `mcp__atlassian__*` to
 workspace/
   .meta/
     counters.json            # { "MYPROJ": 42 } — last issue number per project key
+    persona                  # active output persona (one line, e.g. "UX Writer"); written by /as, read by all skills
+    sync-map.json            # local→remote id ledger, maintained by /sync (see Sync-up below)
   jira/
     {PROJECT_KEY}/
       issues/

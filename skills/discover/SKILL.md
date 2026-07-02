@@ -2,6 +2,8 @@
 name: discover
 description: Synthesize Jira and Confluence data to surface product opportunities, gaps, stale work, and user pain points. Use when the user runs /discover or asks about product direction, feature gaps, or what to build next.
 argument-hint: [focus area]
+allowed-tools: Read, Grep, Glob, mcp__atlassian__getJiraIssue, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__getConfluencePage, mcp__atlassian__searchConfluenceUsingCql, mcp__atlassian__searchAtlassian, mcp__atlassian__fetchAtlassian, mcp__atlassian__jira_get_issue, mcp__atlassian__jira_search, mcp__atlassian__confluence_get_page, mcp__atlassian__confluence_search
+disallowed-tools: mcp__atlassian__createJiraIssue, mcp__atlassian__editJiraIssue, mcp__atlassian__transitionJiraIssue, mcp__atlassian__jira_create_issue, mcp__atlassian__jira_update_issue, mcp__atlassian__jira_transition_issue
 ---
 
 # discover
@@ -12,7 +14,7 @@ Derived from: product-manager + ux-researcher + knowledge-synthesizer (awesome-a
 
 Style references: `standards/ux.md`, `standards/local-store.md`
 
-> **Plugin file paths:** Any reference below to `AGENTS.md`, a `standards/…`, `connectors/…`, or another `skills/…` file is bundled with this plugin. Read it relative to the plugin root at `${CLAUDE_SKILL_DIR}/../..` (e.g. `${CLAUDE_SKILL_DIR}/../../standards/jira.md`), **not** the current working directory. Only `workspace/…` and `.env` live in the user's project (the working directory).
+> **Plugin file paths:** Bundled files (`AGENTS.md`, `standards/…`, `connectors/…`, `skills/…`) resolve from the plugin root at `${CLAUDE_SKILL_DIR}/../..`, never the working directory. Only `workspace/…` and `.env` live in the user's project.
 
 ## Trigger Conditions
 
@@ -26,7 +28,7 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
 
 ## Workflow
 
-0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — if set via `/as`, apply adaptations from `skills/as/SKILL.md` throughout. Default: Product Manager (insight-first, strategic framing).
+0. **Resolve connection mode** — Resolve all `atlassian-*` aliases per `AGENTS.md` Connection Mode; in local fallback mode, translate queries/writes per `standards/local-store.md`. **Check active persona** — read `workspace/.meta/persona` (written by `/as`) and apply its Per-Command Adaptations block in `standards/personas.md`. Absent → Product Manager (insight-first, strategic framing).
 
 1. **Cross-product search** — Use `atlassian-cross-search` with the focus area (or broad query if none) to get a landscape view
 2. **Jira signal mining** — Use `atlassian-search-jira` with JQL:
@@ -41,6 +43,7 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
    - Stale open issues that may indicate blocked or deprioritized work
    - User-facing pain points vs internal tech debt ratio
 5. **Output** — Produce a structured discovery report (see Output Requirements)
+6. **Offer to save as a Discovery Brief** — After presenting the report, offer to persist it as a Discovery Brief (Problem, Goals, Non-Goals, User Stories, Solution Overview, Open Questions — the Spec/PRD template in `standards/confluence.md`) via `atlassian-write-confluence`, so a standalone `/discover` run feeds `/lifecycle` instead of evaporating. Write only on explicit confirmation; if the user declines, end with the report
 
 ## Output Requirements
 
@@ -62,6 +65,9 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
 
 ### Recommended Next Steps
 - [ ] [Action]
+
+---
+Save this as a Discovery Brief? (feeds /lifecycle) — yes | no
 ```
 
 ## Verification Checklist
@@ -71,6 +77,7 @@ Invoked by `/discover`. Also triggered when the user asks about product directio
 - No invented issue keys or page IDs
 - If a query returns 0 results, state that explicitly
 - Focus area respected throughout — do not drift into unrelated topics
+- The Discovery Brief is written only on explicit confirmation — never as part of producing the report; never write Jira issues from this skill
 
 ## Usage
 
